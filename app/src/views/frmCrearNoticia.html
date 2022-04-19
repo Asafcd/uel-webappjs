@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="Plantillas/template :: head">
+    <title>Noticia</title>
+
+</head>
+
+<body>
+
+    <header th:replace="Plantillas/template :: header"> </header>
+    <div class="wrapper">
+        <div th:replace="Plantillas/template :: div.sidebar"></div>
+
+        <div class="main_content">
+
+            <div class="container">
+                <div class="card bg-light">
+                    <div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+
+
+                    <div class="card-body">
+
+
+
+                        <div class="container">
+                            <form th:action="@{/user/views/noticias/save}" th:object="${noticia}" method="POST"
+                                enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <!--input th:field="*{id_noticia}" type="hidden" class="form-control form-control-sm col-md" -->
+                                    <input th:field="*{idtemp}" type="hidden"
+                                        class="form-control form-control-sm col-md" id="idtemp">
+
+
+                                    <div class="form-group row">
+                                        <label class="form-label col-md-1" for="Titulo">Titulo:</label>
+                                        <input th:field="*{titulo}" type="text"
+                                            class="form-control form-control-sm col-md" id="titulo"
+                                            placeholder="titulo noticia">
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-group row">
+                                        <label class="form-label col-md-2" for="contenido">Contenido:</label>
+                                        <textarea th:field="*{contenido}" class="form-control col-md" id="contenido"
+                                            rows="6"></textarea>
+
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-group row">
+
+                                        <input th:value="Borrador" th:field="*{estado}"
+                                            class="form-control form-control-sm col-md" id="estado" autocomplete="off"
+                                            type="hidden" />
+
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-group row">
+                                        <label class="form-label col-md-2" for="Etiqueta">Categoria:</label>
+                                        <select th:field="*{etiqueta}" class="form-control form-control-sm col-md"
+                                            id="Etiqueta">
+                                            <option th:value="Deportes" th:text="Deportes">
+                                            <option th:value="NoticiasMundiales" th:text="'Noticias Mundiales'">
+                                            <option th:value="MedioAmbiente" th:text="'Medio Ambiente'">
+                                            <option th:value="DesarrolloT" th:text="DesarrolloT">
+                                            <option th:value="ArteyCultura" th:text="'Arte y Cultura'">
+                                            <option th:value="NoticiasLocales" th:text="'Noticias Locales'">
+                                            <option th:value="Gastronomia" th:text="Gastronomia">
+                                            <option th:value="Kids" th:text="Kids">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-group row">
+                                        <label class="form-label col-md-2" for="Titulo">Autor:</label>
+                                        <select th:field="*{usuario}" class="form-control form-control-sm col-md"
+                                            id="autor">
+                                            <option th:each="usuario:${usuarios}" th:value="${usuario.id_usuario}"
+                                                th:text="${usuario.nombres + ' ' + usuario.apellidos}" />
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-group row">
+                                        <label class="form-label col-md-2" for="fuentes">Fuentes:</label>
+                                        <table id=fuentes>
+                                            <thead>
+                                                <tr>
+                                                    <th> Titulo</th>
+                                                    <th> Link</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><input th:field="*{fuente.nombre}" type="text" /></td>
+                                                    <td><input th:field="*{fuente.link}" type="text" /></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div th:text="${recordatorio}"></div>
+                                    <ul>
+                                        <li><label class="col-md-2" for="mainImage">Imagen Principal</label>
+                                            <input type="file" name="mainImage"
+                                                class="form-control form-control-sm col-md-6" id="mainImage"
+                                                accept="image/png, image/jpeg" required
+                                                th:value="@{${noticia.getMainImagePath}}" />
+                                            <p id="error_file"></p>
+                                        </li>
+                                        <li>
+                                            <label class="col-md-2" for="extraImage">Segunda imagen</label>
+                                            <input type="file" name="extraImage"
+                                                class="form-control form-control-sm col-md-6" id="extraImage"
+                                                accept="image/png, image/jpeg" required
+                                                th:value="@{${noticia.getExtraImagePath1}}" />
+                                            <p id="error_file"></p>
+                                        </li>
+                                        <!--li>
+                                        <label class="col-md-2" for="extraImage2" >Tercera imagen</label>
+                                        <input type="file" name="extraImage" class="form-control form-control-sm col-md-6" id="extraImage2" accept="image/png, image/jpeg"
+                                               th:value="@{${noticia.getExtraImagePath2}}"/>
+                                        <p id="error_file"></p>
+                                    </li>
+                                    <li>
+                                        <label class="col-md-2" for="extraImage3" >Cuarta imagen</label>
+                                        <input type="file"  name="extraImage" class="form-control form-control-sm col-md-6" id="extraImage3" accept="image/png, image/jpeg"
+                                               th:value="@{${noticia.getExtraImagePath3}}"/>
+                                        <p id="error_file"></p>
+                                    </li-->
+                                    </ul>
+                                </div>
+                                <div class="card-footer bg-dark">
+                                    <div class="mb-3">
+                                        <input type="submit" class="btn btn-primary btn-sm text-center"
+                                            th:text="Guardar">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<footer th:replace="Plantillas/template :: footer"></footer>
+<script src="js/frmCrearNoticia.js"></script>
+
+</html>

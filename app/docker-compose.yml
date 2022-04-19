@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  uelnode:
+    build: .
+    volumes:
+    - ./src:/usr/src/service/
+    ports:
+    - 8002:80

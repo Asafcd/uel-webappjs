@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Plantillas/template :: head">
+    <title>Noticia</title>
+  
+</head>
+<body>
+    
+  <header th:replace="Plantillas/template :: header"> </header>
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Noticias</h2>
+        <ul>
+          <li><a th:href="@{/views/administrador/Recibidas/}">Noticias</a></li>
+          <li><a th:href="@{/views/administrador/noticias/Enviadas/}">Usuarios</a></li>
+        </ul>
+      </div>
+    <!--fin sidebar -->
+
+    <!--contenido -->
+    <div class="main_content">
+        <div class="container">
+            <div class="card bg-light">
+              <div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+        
+            
+              <div class="card-body">
+              
+         
+          <div class="container">
+            <form th:action="@{/views/administrador/anotaciones/sent}" th:object="${anotacion}" method="POST">
+                <div class="mb-3">
+                   
+                   
+                <div class="mb-3">
+                    <div class="form-group row">
+                        
+
+                        <label class="form-label col-md-2" for="contenido" >Anotaciones:</label>
+                        <textarea th:field="*{contenido}"  class="form-control col-md" id="contenido" rows="6"></textarea>
+                        <input  th:value="${noticia}" th:field="*{noticia}" type="hidden" class="form-control form-control-sm col-md" >
+                        </select>
+                    
+                    </div>
+                </div>
+                
+            </div>
+                
+                <div class="card-footer bg-dark">
+                    <div class="mb-3">
+                <input type="submit" class="btn btn-primary btn-sm text-center" th:text="Enviar">
+            </div>
+        </div>
+              </form>
+        </div>
+        </div>
+        </div>
+         </div>
+    </div>
+    </div>
+</body>
+<footer th:replace="Plantillas/template :: footer"></footer>
+</html>

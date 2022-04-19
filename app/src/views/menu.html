@@ -1,0 +1,17 @@
+<!DOCTYPE HTML SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Plantillas/template :: head">
+    
+  
+</head>
+
+<body>
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Cerrar Sesion"/>
+    </form>
+    <h1><a th:href="@{/admin}"> admin</a> | <a th:href="@{/user}"> user</a></h1>
+
+    </body>
+</html>

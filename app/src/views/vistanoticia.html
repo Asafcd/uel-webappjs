@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Plantillas/template :: head">
+    <title>Noticia</title>
+  
+</head>
+<body>
+    
+  <header th:replace="Plantillas/template :: header"> </header>
+<div class="wrapper">
+     <div class="sidebar">
+        <h2>Noticias</h2>
+        <ul>
+          <li><a th:href="@{/views/administrador/Recibidas/}">Noticias</a></li>
+          <li><a th:href="@{/views/noticias/Enviadas/}">Usuarios</a></li>
+        </ul>
+      </div>
+    <!--fin sidebar -->
+
+    <!--contenido -->
+    <div class="main_content">
+    <div class="container">
+    
+        <h1 th:text="${titulo}"></h1>
+    </div>
+    <div class="container">
+        <h3 th:text="${noticia.titulo}"></h3>
+        <img th:src=@{${noticia.getMainImagePath}}>
+        
+          <p  th:text="${noticia.contenido}"></p>
+        
+            <h5 th:text="${noticia.usuario.nombres + ' ' + noticia.usuario.apellidos}"></h5>
+            <a class="btn btn-success btn-sm" th:href="@{/views/administrador/aceptar/}+${noticia.id_noticia}"
+            th:text="'Aceptar'" title="Aceptar noticia"></a>
+            <a class="btn btn-danger btn-sm" th:href="@{/views/administrador/anotaciones/mensajeadmin/}+${noticia.id_noticia}"
+            th:text="'Rechazar'" title="Rechazar noticia"
+            ></a>
+            <!--contenido -->
+      </div>
+    </div>
+    </div>
+</body>
+<footer th:replace="Plantillas/template :: footer"></footer>
+</html>

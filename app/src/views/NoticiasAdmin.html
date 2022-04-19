@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="Plantillas/template :: head">
+    <title>Noticia</title>
+  
+</head>
+<body>
+    
+  <header th:replace="Plantillas/template :: header"> </header>
+<div class="wrapper">
+     <div class="sidebar">
+        <h2>Noticias</h2>
+        <ul>
+          <li><a th:href="@{/views/administrador/Recibidas/}">Noticias</a></li>
+          <li><a th:href="@{/views/noticias/Enviadas/}">Usuarios</a></li>
+        </ul>
+      </div>
+    <!--fin sidebar -->
+
+    <!--contenido -->
+    <div class="main_content">
+    <div class="container">
+    
+        <h1 th:text="${titulo}"></h1>
+    </div>
+    <div class="container">
+    <table class="table">
+        <thead class="table-dark">
+          <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Autor</th>
+              <th scope="col">Acciones</th>
+             
+              </tr>
+        </thead>
+        <tbody>
+          <tr th:each="nt:${noticias}"></th>
+          <th scope="row" th:text="${nt.id_noticia}"></th>
+          <td  th:text="${nt.titulo}"></td>
+          <td  th:text="${nt.estado}"></td>
+          <td  th:text="${nt.usuario.nombres + ' ' + nt.usuario.apellidos}" ></td>
+          <td>  <a class="btn btn-success btn-sm" th:href="@{/views/administrador/ver/}+${nt.id_noticia}"
+          th:text="'Ver'" title="Modificar Registro"></a>
+        
+           
+          </td>
+          
+        </tbody>
+      </table>
+ 
+        <!--contenido -->
+      </div>
+    </div>
+    </div>
+</body>
+<footer th:replace="Plantillas/template :: footer"></footer>
+</html>
