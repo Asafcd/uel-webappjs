@@ -2,31 +2,31 @@ const express = require('express')
 const router = express.Router();
 
 router.get('/', (req, res) => {    
-    res.render('home.html', {title: 'FIRMA CORP'});    
+    res.render('home.hbs', {title: 'Union es Logro'});    
 });
 
 router.get('/buzonUser', (req, res) => {    
-    res.render('buzonUser.html', {title: 'FC -Expedientes'});
+    res.render('buzonUser.html', {title: 'uEL - buzon'});
     
 });
 
 router.get('/crearnoti', (req, res) => {    
-    res.render('frmCrearNoticia.html', {title: 'FC - audiencias.'});
+    res.render('frmCrearNoticia.html', {title: 'UEL - Crear noticia'});
     
 });
 
 router.get('/listar', (req, res) => {    
-    res.render('listar.html', {title: 'FC.'});
+    res.render('listar.html', {title: 'UEL - listar'});
     
 });
 
 router.get('/mensajeadmin', (req, res) => {    
-    res.render('Mensajeadmin.html', {title: 'FIRMA CORP.'});
+    res.render('Mensajeadmin.html', {title: 'UEl Admin - mensaje'});
     
 });
 
 router.get('/menu', (req, res) => {    
-    res.render('menu.html', {title: 'FC.'});
+    res.render('menu.html', {title: 'UEL - menu'});
     
 });
 
@@ -36,7 +36,7 @@ router.get('/nosotros', (req, res) => {
 });
 
 router.get('/noticia', (req, res) => {    
-    res.render('noticia.html', {title: 'UEL.'});
+  res.redirect('./noticia/add')
     
 });
 

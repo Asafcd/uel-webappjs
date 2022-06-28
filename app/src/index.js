@@ -11,10 +11,10 @@ const app = express();
 app.set("port", process.env.PORT || 8082);
 app.set("views", path.join(__dirname, "views"));
 app.engine(".hbs", exhbs.engine({
-  extname: '.html',
   defaultLayout:'main',
   layoutsDir: path.join(app.get('views'), 'layouts'),
   partialsDir: path.join(app.get('views'), 'partials'),
+  extname: '.hbs',
   helpers: require('./lib/handlebars')
   }));
 app.set("view engine", "hbs");
@@ -32,7 +32,7 @@ app.use((req,res,next)=>{
 //ROUTES
 app.use(require("./routes/index"));
 app.use(require('./routes/authentication'))
-app.use('noticia',require('./routes/noticia'))
+app.use('/noticia',require('./routes/noticia'))
 
 //STATIC FILES
 app.use(express.static(path.join(__dirname, "public/static")));

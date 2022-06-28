@@ -1,8 +1,12 @@
-<!DOCTYPE HTML SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html lang="en">
 
-<head th:replace="Plantillas/template :: head">
-<%- include ('./partials/head.html') %>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{head}}
+  <title>UEL</title>
 </head>
 
 <body>
@@ -373,6 +377,7 @@
 
 
 </body>
-<footer style="width: max-content;" th:replace="Plantillas/template :: footer"></footer>
+{{footer}}
+
 
 </html>
