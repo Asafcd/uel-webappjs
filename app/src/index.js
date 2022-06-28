@@ -9,7 +9,7 @@ const favicon = require('serve-favicon');
 const app = express();
 
 //SETTINGS
-app.set("port", process.env.PORT || 8082);
+app.set("port", process.env.PORT || 80); //este port debe coincidir con el INTERNO del docker
 app.set("views", path.join(__dirname, "views"));
 app.engine(".hbs", exhbs.engine({
   defaultLayout:'main',

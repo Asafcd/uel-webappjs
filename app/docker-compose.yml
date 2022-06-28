@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  uelnode:
-    build: .
-    volumes:
-    - ./src:/usr/src/service/
-    ports:
-    - 8002:80
+   uel-server:
+      build: .
+      volumes:
+      - ./src:/usr/app/src
+      ports:
+      - 8080:80 #Externo:Interno
