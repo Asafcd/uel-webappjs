@@ -4,6 +4,7 @@ const cukip = require("cookie-parser")
 const exhbs = require('express-handlebars')
 const path = require("path");
 const morgan = require('morgan')
+const favicon = require('serve-favicon');
 
 const app = express();
 
@@ -32,10 +33,14 @@ app.use((req,res,next)=>{
 //ROUTES
 app.use(require("./routes/index"));
 app.use(require('./routes/authentication'))
-app.use('/noticia',require('./routes/noticia'))
+app.use('/noticias', require('./routes/noticias'))
+app.use('/admin',require('./routes/admin'))
+app.use('/user',require('./routes/user'))
+
 
 //STATIC FILES
-app.use(express.static(path.join(__dirname, "public/static")));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(favicon(path.join(__dirname,'public/img/favicon.ico')));
 
 //LISTENING SERVER
 app.listen(app.get("port"), () => {

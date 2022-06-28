@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <div replace="Plantillas/template :: div.sidebar"></div>
+  <div class="main_content">
+    <div class="container">
+      <h1 text="titulo"></h1>
+    </div>
+    <div class="container">
+
+      <a class="btn btn-primary btn-sm" href="/user/views/noticias/crear" text="'Nueva Noticia'"
+        title="Crear Nuevo Registro"></a>
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Acciones</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr each="nt:noticias">
+            </th>
+            <th scope="row" text="nt.id_noticia"></th>
+            <td text="nt.titulo"></td>
+            <td text="nt.estado"></td>
+            <td text="nt.usuario.nombres + ' ' + nt.usuario.apellidos"></td>
+            <td> <a class="btn btn-primary btn-sm" href="/user/views/noticias/ver/+nt.id_noticia" text="'Ver'"
+                title="Ver noticia"></a>
+
+              <a class="btn btn-success btn-sm" href="/user/views/noticias/edit/+nt.id_noticia" text="'Editar'"
+                title="Modificar Registro"></a>
+
+              <a class="btn btn-danger btn-sm" href="/user/views/noticias/delete/+nt.id_noticia" text="'Eliminar'"
+                title="Eliminar Registro" onclick="return confirm('¿Esta seguro de eliminar esta noticia?');"></a>
+            </td>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+</div>

@@ -1,87 +1,61 @@
 const express = require('express')
 const router = express.Router();
+const pool = require('../database')
 
-router.get('/', (req, res) => {    
-    res.render('home.hbs', {title: 'Union es Logro'});    
-});
-
-router.get('/buzonUser', (req, res) => {    
-    res.render('buzonUser.html', {title: 'uEL - buzon'});
-    
-});
-
-router.get('/crearnoti', (req, res) => {    
-    res.render('frmCrearNoticia.html', {title: 'UEL - Crear noticia'});
-    
-});
-
-router.get('/listar', (req, res) => {    
-    res.render('listar.html', {title: 'UEL - listar'});
-    
-});
-
-router.get('/mensajeadmin', (req, res) => {    
-    res.render('Mensajeadmin.html', {title: 'UEl Admin - mensaje'});
-    
-});
-
-router.get('/menu', (req, res) => {    
-    res.render('menu.html', {title: 'UEL - menu'});
-    
+//#region GUESTS
+router.get('/', async (req, res) => {
+    try{
+        let data = await pool.query("SELECT * FROM noticias")
+        console.log(data[0])
+        res.render('home.hbs', {data:data});  
+    }catch(err){console.log(err)}  
 });
 
 router.get('/nosotros', (req, res) => {    
-    res.render('nosotros.html', {title: 'UEL.'});
-    
+    res.render('nosotros.hbs');    
 });
-
-router.get('/noticia', (req, res) => {    
-  res.redirect('./noticia/add')
-    
+router.get('/canales', (req, res) => {    
+    res.render('canales.hbs');    
 });
-
-router.get('/aceptadas', (req, res) => {    
-    res.render('noticiasaceptadas.html', {title: 'UEL.'});
-    
+//SECCIONES DE NOTICIAS para guests
+router.get('/mundiales', (req, res) => {    
+    res.redirect('noticias/mundiales');    
 });
-
-router.get('/NoticiasAdmin', (req, res) => {    
-    res.render('NoticiasAdmin.html', {title: 'UEL.'});
-    
+router.get('/locales', (req, res) => {    
+    res.redirect('noticias/locales');    
 });
-
-router.get('/enviadas', (req, res) => {    
-    res.render('noticiasEnviadas.html', {title: 'UEL.'});
-    
+router.get('/deportes', (req, res) => {    
+    res.redirect('noticias/deportes');    
 });
-
-router.get('/noticiasSeccion', (req, res) => {    
-    res.render('noticiasSeccion.html', {title: 'UEL.'});
-    
+router.get('/arte', (req, res) => {    
+    res.redirect('noticias/arte');    
 });
-
-router.get('/privacidad', (req, res) => {    
-    res.render('privpolicy.html', {title: 'UEL - Privacidad'});
-    
+router.get('/desarrollo', (req, res) => {    
+    res.redirect('noticias/desarrollo');    
 });
-
-router.get('/vermensaje', (req, res) => {    
-    res.render('vermensaje.html', {title: 'UEL.'});
-    
+router.get('/medioambiente', (req, res) => {    
+    res.redirect('noticias/medioambiente');    
 });
-
-router.get('/verNoticiaUser', (req, res) => {    
-    res.render('verNoticiaUser.html', {title: 'UEL.'});
-    
+router.get('/gastronomia', (req, res) => {    
+    res.redirect('noticias/gastronomia');    
 });
-
-router.get('/vistanoticia', (req, res) => {    
-    res.render('vistanoticia.html', {title: 'UEL.'});
-    
+router.get('/kids', (req, res) => {    
+    res.redirect('noticias/kids');    
 });
+//#endregion
 
 router.get('/login', (req, res) => {    
-    res.render('login.html', {title: 'FIRMA CORP.'});
+    res.render('login.hbs');    
+});
+
+router.get('/user', (req, res) => {    
+    res.redirect('/user/listar');
     
 });
+router.get('/admin', (req, res) => {    
+    res.redirect('/admin/menu');
+    
+});
+
+
 module.exports = router;

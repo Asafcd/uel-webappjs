@@ -1,20 +1,6 @@
-<!DOCTYPE HTML>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {{head}}
-  <title>UEL</title>
-</head>
-
-<body>
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v11.0"
     nonce="pNKTv1lK"></script>
-  <header th:replace="Plantillas/template :: header"></header>
-
   <!--Video animales -->
   <!--noticias recientes-->
   <!--plugin fb -->
@@ -22,7 +8,7 @@
 
   <div class="row">
     <div class="col-6" id="imageninicio">
-      <img id="imginiciolog" th:src="@{/img/iniciologo.png}">
+      <img id="imginiciolog" src="/img/iniciologo.png">
     </div>
     <div class="col-4">
       <div id="textoinicio">
@@ -32,16 +18,16 @@
     <div class="col-1" id="inicio-logos-social">
       <ul>
         <li>
-          <img th:src="@{/img/wplogo.png}">
+          <img src="/img/wplogo.png">
         </li>
         <li>
           <div id="logo-social">
-            <img th:src="@{/img/fblogo.png}">
+            <img src="/img/fblogo.png">
           </div>
         </li>
         <li>
           <div id="logo-social">
-            <img th:src="@{/img/iglogo.png}">
+            <img src="/img/iglogo.png">
           </div>
         </li>
       </ul>
@@ -61,7 +47,7 @@
                 <h6 class="box_header page_margin_top">NOTICIAS MUNDIALES</h6>
               </div>
               <div class="col-6" id="vermassecc">
-                <a th:href="@{/views/noticias/NoticiasMundiales}">
+                <a href="/views/noticias/NoticiasMundiales">
                   <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS MUNDIALES</h6>
                 </a>
               </div>
@@ -71,15 +57,15 @@
 
               <ul class="list-inline" id="listadenotas">
 
-                <li class="list-inline-item" id="elementolistanotas" th:each="nt:${mundiales}">
+                <li class="list-inline-item" id="elementolistanotas" each="nt:mundiales">
                   <div class="col-12" id="noticia-enlistada">
-                    <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" title="noticia caida"
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
                       value="Redirect Page">
-                      <img th:src=@{${nt.getMainImagePath}} id="imgseccionlista">
+                      <img src=nt.getMainImagePath id="imgseccionlista">
                     </a>
 
                     <h6 id="titulo-inicio-lista">
-                      <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" th:text="${nt.titulo}"></a>
+                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
                     </h6>
                   </div>
                 </li>
@@ -100,24 +86,24 @@
                 <h6 class="box_header page_margin_top">DEPORTES</h6>
               </div>
               <div class="col-6" id="vermassecc">
-                <a th:href="@{/views/noticias/Deportes}">
+                <a href="/views/noticias/Deportes">
                   <h6 class="box_header page_margin_top" id="vermasseccion">MÁS DEPORTES</h6>
                 </a>
               </div>
             </div>
             <div class="row">
-
               <ul class="list-inline" id="listadenotas">
+                
 
-                <li class="list-inline-item" id="elementolistanotas" th:each="nt:${deportes}">
+                <li class="list-inline-item" id="elementolistanotas" each="nt:deportes">
                   <div class="col-12" id="noticia-enlistada">
-                    <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" title="noticia caida"
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
                       value="Redirect Page">
-                      <img th:src=@{${nt.getMainImagePath}} id="imgseccionlista">
+                      <img src={{{ID}}} id="imgseccionlista">
                     </a>
 
                     <h6 id="titulo-inicio-lista">
-                      <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" th:text="${nt.titulo}"></a>
+                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
                     </h6>
                   </div>
                 </li>
@@ -139,7 +125,7 @@
                 <h6 class="box_header page_margin_top">MEDIO AMBIENTE</h6>
               </div>
               <div class="col-6" id="vermassecc">
-                <a th:href="@{/views/noticias/MedioAmbiente}">
+                <a href="/views/noticias/MedioAmbiente">
                   <h6 class="box_header page_margin_top" id="vermasseccion">MÁS MEDIO AMBIENTE</h6>
                 </a>
               </div>
@@ -148,15 +134,15 @@
 
               <ul class="list-inline" id="listadenotas">
 
-                <li class="list-inline-item" id="elementolistanotas" th:each="nt:${medio}">
+                <li class="list-inline-item" id="elementolistanotas" each="nt:medio">
                   <div class="col-12" id="noticia-enlistada">
-                    <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" title="noticia caida"
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
                       value="Redirect Page">
-                      <img th:src=@{${nt.getMainImagePath}} id="imgseccionlista">
+                      <img src=nt.getMainImagePath id="imgseccionlista">
                     </a>
 
                     <h6 id="titulo-inicio-lista">
-                      <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" th:text="${nt.titulo}"></a>
+                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
                     </h6>
                   </div>
                 </li>
@@ -178,7 +164,7 @@
                 <h6 class="box_header page_margin_top">DESARROLLO TECNOLOGICO</h6>
               </div>
               <div class="col-6" id="vermassecc">
-                <a th:href="@{/views/noticias/DesarrolloT}">
+                <a href="/views/noticias/DesarrolloT">
                   <h6 class="box_header page_margin_top" id="vermasseccion">MÁS DESARROLLO TECNOLOGICO</h6>
                 </a>
               </div>
@@ -187,15 +173,15 @@
 
               <ul class="list-inline" id="listadenotas">
 
-                <li class="list-inline-item" id="elementolistanotas" th:each="nt:${desarrollo}">
+                <li class="list-inline-item" id="elementolistanotas" each="nt:desarrollo">
                   <div class="col-12" id="noticia-enlistada">
-                    <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" title="noticia caida"
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
                       value="Redirect Page">
-                      <img th:src=@{${nt.getMainImagePath}} id="imgseccionlista">
+                      <img src=nt.getMainImagePath id="imgseccionlista">
                     </a>
 
                     <h6 id="titulo-inicio-lista">
-                      <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" th:text="${nt.titulo}"></a>
+                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
                     </h6>
                   </div>
                 </li>
@@ -217,7 +203,7 @@
                 <h6 class="box_header page_margin_top">ARTE Y CULTURA</h6>
               </div>
               <div class="col-6" id="vermassecc">
-                <a th:href="@{/views/noticias/ArteyCultura}">
+                <a href="/views/noticias/ArteyCultura">
                   <h6 class="box_header page_margin_top" id="vermasseccion">MÁS ARTE Y CULTURA</h6>
                 </a>
               </div>
@@ -226,15 +212,15 @@
 
               <ul class="list-inline" id="listadenotas">
 
-                <li class="list-inline-item" id="elementolistanotas" th:each="nt:${arte}">
+                <li class="list-inline-item" id="elementolistanotas" each="nt:arte">
                   <div class="col-12" id="noticia-enlistada">
-                    <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" title="noticia caida"
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
                       value="Redirect Page">
-                      <img th:src=@{${nt.getMainImagePath}} id="imgseccionlista">
+                      <img src=nt.getMainImagePath id="imgseccionlista">
                     </a>
 
                     <h6 id="titulo-inicio-lista">
-                      <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" th:text="${nt.titulo}"></a>
+                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
                     </h6>
                   </div>
                 </li>
@@ -259,7 +245,7 @@
                 <h6 class="box_header page_margin_top">NOTICIAS LOCALES</h6>
               </div>
               <div class="col-6" id="vermassecc">
-                <a th:href="@{/views/noticias/NoticiasLocales}">
+                <a href="/views/noticias/NoticiasLocales">
                   <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS LOCALES</h6>
                 </a>
               </div>
@@ -268,15 +254,15 @@
 
               <ul class="list-inline" id="listadenotas">
 
-                <li class="list-inline-item" id="elementolistanotas" th:each="nt:${locales}">
+                <li class="list-inline-item" id="elementolistanotas" each="nt:locales">
                   <div class="col-12" id="noticia-enlistada">
-                    <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" title="noticia caida"
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
                       value="Redirect Page">
-                      <img th:src=@{${nt.getMainImagePath}} id="imgseccionlista">
+                      <img src=nt.getMainImagePath id="imgseccionlista">
                     </a>
 
                     <h6 id="titulo-inicio-lista">
-                      <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" th:text="${nt.titulo}"></a>
+                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
                     </h6>
                   </div>
                 </li>
@@ -299,7 +285,7 @@
                 <h6 class="box_header page_margin_top">GASTRONOMIA</h6>
               </div>
               <div class="col-6" id="vermassecc">
-                <a th:href="@{/views/noticias/Gastronomia}">
+                <a href="/views/noticias/Gastronomia">
                   <h6 class="box_header page_margin_top" id="vermasseccion">MÁS GASTRONOMIA</h6>
                 </a>
               </div>
@@ -308,15 +294,15 @@
 
               <ul class="list-inline" id="listadenotas">
 
-                <li class="list-inline-item" id="elementolistanotas" th:each="nt:${gastronomia}">
+                <li class="list-inline-item" id="elementolistanotas" each="nt:gastronomia">
                   <div class="col-12" id="noticia-enlistada">
-                    <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" title="noticia caida"
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
                       value="Redirect Page">
-                      <img th:src=@{${nt.getMainImagePath}} id="imgseccionlista">
+                      <img src=nt.getMainImagePath id="imgseccionlista">
                     </a>
 
                     <h6 id="titulo-inicio-lista">
-                      <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" th:text="${nt.titulo}"></a>
+                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
                     </h6>
                   </div>
                 </li>
@@ -338,7 +324,7 @@
                 <h6 class="box_header page_margin_top">KIDS</h6>
               </div>
               <div class="col-6" id="vermassecc">
-                <a th:href="@{/views/noticias/kids}">
+                <a href="/views/noticias/kids">
                   <h6 class="box_header page_margin_top" id="vermasseccion">MÁS KIDS</h6>
                 </a>
               </div>
@@ -347,37 +333,22 @@
 
               <ul class="list-inline" id="listadenotas">
 
-                <li class="list-inline-item" id="elementolistanotas" th:each="nt:${kids}">
+                <li class="list-inline-item" id="elementolistanotas" each="nt:kids">
                   <div class="col-12" id="noticia-enlistada">
-                    <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" title="noticia caida"
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
                       value="Redirect Page">
-                      <img th:src=@{${nt.getMainImagePath}} id="imgseccionlista">
+                      <img src=nt.getMainImagePath id="imgseccionlista">
                     </a>
 
                     <h6 id="titulo-inicio-lista">
-                      <a th:href="@{/views/noticias/verNoticia/}+${nt.id_noticia}" th:text="${nt.titulo}"></a>
+                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
                     </h6>
                   </div>
                 </li>
-
               </ul>
-
             </div>
-
           </div>
-
-
-
         </div>
-
       </div>
     </div>
   </div>
-
-
-
-</body>
-{{footer}}
-
-
-</html>
