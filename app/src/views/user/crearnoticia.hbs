@@ -1,0 +1,123 @@
+{{>navigation}}
+<div class="wrapper">
+    {{> sidebar}}
+    <div class="main_content">
+        <div class="container">
+            <div class="card bg-light">
+                <div class="card-header bg-dark text-white" text="titulo"> Todos los campos son requeridos.</div>
+                <form action="/user/crearnoticia" method="POST">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="mb-3">
+                                <div class="form-group row">
+                                    <label class="form-label col-md-1" for="Titulo">Titulo:</label>
+                                    <input type="text" class="form-control form-control-sm col-md" id="titulo"
+                                        name="titulo" placeholder="titulo noticia">
+                                    <small></small>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-group row">
+                                    <label class="form-label col-md-2" for="contenido">Contenido:</label>
+                                    <textarea class="form-control col-md" name="contenido" id="contenido"
+                                        rows="6"></textarea>
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-group row">
+                                    <input value="Borrador" class="form-control form-control-sm col-md" id="estado"
+                                        name="estado" autocomplete="off" type="hidden" />
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-group row">
+                                    <label class="form-label col-md-2" for="Etiqueta">Categoria:</label>
+                                    <select class="form-control form-control-sm col-md" name="etiqueta" id="Etiqueta">
+                                        <option value="Deportes" text="Deportes">Deportes
+                                        <option value="NoticiasMundiales" text="'Noticias Mundiales'">Noticias
+                                            Mundiales
+                                        <option value="MedioAmbiente" text="'Medio Ambiente'">Medio Ambiente
+                                        <option value="DesarrolloT" text="DesarrolloT">Desarrollo Tecnológico
+                                        <option value="ArteyCultura" text="'Arte y Cultura'">Arte y cultura
+                                        <option value="NoticiasLocales" text="'Noticias Locales'">Noticias Locales
+                                        <option value="Gastronomia" text="Gastronomia">Gastronomia
+                                        <option value="Kids" text="Kids">Kids
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-group row">
+                                    <label class="form-label col-md-2" for="Titulo">Autor:</label>
+                                    <select class="form-control form-control-sm col-md" name="autor" id="autor">
+                                        {{#each users}}
+                                        <option value={{id_usuario}} />{{nombres}} {{apellidos}}
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-group row">
+                                    <label class="form-label col-md-2" for="fuentes">Fuentes:</label>
+                                    <table id=fuentes>
+                                        <thead>
+                                            <tr>
+                                                <th> Titulo</th>
+                                                <th> Link</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><input id="fuentenombre" name="fuentenombre" type="text" />fuente
+                                                    nombre </td>
+                                                <td><input id="fuentelink" name="fuentelink" type="text" />fuenet link
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div text="recordatorio"></div>
+                                <ul>
+                                    <li><label class="col-md-2" for="mainImage">Imagen Principal</label>
+                                        <input type="file" name="mainimg" class="form-control form-control-sm col-md-6"
+                                            id="mainImage" accept="image/png, image/jpeg" />
+                                        <p id="error_file"></p>
+                                    </li>
+                                    <li>
+                                        <label class="col-md-2" for="extraImage">Segunda imagen</label>
+                                        <input type="file" name="extraimg" class="form-control form-control-sm col-md-6"
+                                            id="extraImage" accept="image/png, image/jpeg" />
+                                        <p id="error_file"></p>
+                                    </li>
+                                    <!--li>
+                                        <label class="col-md-2" for="extraImage2" >Tercera imagen</label>
+                                        <input type="file" name="extraImage" class="form-control form-control-sm col-md-6" id="extraImage2" accept="image/png, image/jpeg"
+                                               value="noticia.getExtraImagePath2"/>
+                                        <p id="error_file"></p>
+                                    </li>
+                                    <li>
+                                        <label class="col-md-2" for="extraImage3" >Cuarta imagen</label>
+                                        <input type="file"  name="extraImage" class="form-control form-control-sm col-md-6" id="extraImage3" accept="image/png, image/jpeg"
+                                               value="noticia.getExtraImagePath3"/>
+                                        <p id="error_file"></p>
+                                    </li-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-dark">
+                        <div class="mb-3">
+                            <input type="submit" class="btn btn-primary btn-sm text-center" text="Guardar">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

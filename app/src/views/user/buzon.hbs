@@ -1,0 +1,33 @@
+{{>navigation}}
+<div class="wrapper">
+  {{>sidebar}}
+  <div class="main_content">
+    <div class="container">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Noticia</th>
+            <th scope="col">Acciones</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {{#each mensajes}}
+          <tr>
+            </th>
+            <th scope="row">{{this.id_mensaje}}</th>
+            <td>{{this.titulo}}</td>
+            <td> <a class="btn btn-primary btn-sm" href="/user/vermensaje/{{this.id_mensaje}}">Ver mensaje</a>
+              
+            </td>
+          </tr>
+          {{/each}}
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+</div>

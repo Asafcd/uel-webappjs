@@ -1,0 +1,50 @@
+{{>navigation}}
+<div class="wrapper">
+    {{>sidebar}}
+    <div class="main_content p-4">
+        <table class="table">
+            <thead class="text-center text-white bg-dark">
+                <th colspan="2">Datos generales de noticia</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        Titulo de la noticia
+                    </th>
+                    <td>{{noticia.titulo}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Contenido de la noticia</th>
+                    <td>{{noticia.contenido}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Autor</th>
+                    <td> {{autor.nombres}} {{autor.apellidos}} </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col" >
+                <div class="p-4 col-md-10 mx-auto">
+                    <table class="table">
+                        <thead class="text-center text-white bg-info">
+                            <th>Razones por las cuales la noticia ha sido rechazada:</th>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>{{data.contenido}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-grid col-md-8 mx-auto">
+                        <a class="btn btn-success btn-sm btn-block" href="/user/editnoticia/{{data.id_noticia}}">EDITAR NOTICIA</a>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col"></div>
+        </div>
+        
+        
+    </div>
+</div>

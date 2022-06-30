@@ -1,354 +1,440 @@
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v11.0"
-    nonce="pNKTv1lK"></script>
-  <!--Video animales -->
-  <!--noticias recientes-->
-  <!--plugin fb -->
-  <!--politica -->
+<nav class="navbar navbar-expand-lg navbar-fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <img src="/img/logounion.png">
+    </a>
+    <div id="elementos-izquierda">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class=row>
+        <div class="col-6">
+          <form action="/views/noticias/busqueda">
+            <div class="input-group">
+              <span class="input-group-append">
+                <i class="fa fa-search"></i>
+              </span>
+              <input type="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon"
+                name="formulario" id="formulario" class="form-control border-end-0 border rounded-pill" />
+              <span class="input-group-append">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
+            <!--<input type="submit" class="btn btn-outline-primary" name="action" value="buscar" id="boton"> -->
 
-  <div class="row">
-    <div class="col-6" id="imageninicio">
-      <img id="imginiciolog" src="/img/iniciologo.png">
-    </div>
-    <div class="col-4">
-      <div id="textoinicio">
-        <h3 id="letrasinicio">UNIÓN ES LOGRO<br>PERIÓDICO DIGITAL</h3>
+          </form>
+        </div>
+        <div class="col-4">
+          <a class="btn btn-primary btn-lg " role="button" href="/login">
+            Iniciar Sesion
+          </a>
+        </div>
+        <div class="col-2">
+
+          <div id="logospaises">
+            <div id="pais">
+              <a>
+                <img id="logopais" src="/img/mexico.png">
+              </a>
+            </div>
+            <div>
+              <a>
+                <img id="logopais" src="/img/eua.png">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">INICIO</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle dropbtn" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              SECCIONES
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div id="myDropdown" class="dropdown-content">
+                <li><a class="dropdown-item" href="/mundiales">Noticias
+                    Mundiales</a></li>
+                <li><a class="dropdown-item" href="/locales">Noticias
+                    Locales</a></li>
+                <li><a class="dropdown-item" href="/deportes">Deportes</a></li>
+                <li><a class="dropdown-item" href="/arte">Arte y
+                    Cultura</a></li>
+                <li><a class="dropdown-item" href="/desarrollo">Desarrollo T</a>
+                </li>
+                <li><a class="dropdown-item" href="/medioambiente">Medio
+                    Ambiente</a></li>
+                <li><a class="dropdown-item" href="/gastronomia">Gastronomia</a>
+                </li>
+                <li><a class="dropdown-item" href="/kids">KIDS</a></li>
+              </div>
+            </ul>
+          </li>
+          <!--li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/canales">CANALES</a>
+                        </li-->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/nosotros">NOSOTROS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#footer">CONTACTO</a>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="col-1" id="inicio-logos-social">
-      <ul>
-        <li>
-          <img src="/img/wplogo.png">
-        </li>
-        <li>
-          <div id="logo-social">
-            <img src="/img/fblogo.png">
-          </div>
-        </li>
-        <li>
-          <div id="logo-social">
-            <img src="/img/iglogo.png">
-          </div>
-        </li>
-      </ul>
+  </div>
+</nav>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v11.0"
+  nonce="pNKTv1lK"></script>
+<!--Video animales -->
+<!--noticias recientes-->
+<!--plugin fb -->
+<!--politica -->
+
+<div class="row">
+  <div class="col-6" id="imageninicio">
+    <img id="imginiciolog" src="/img/iniciologo.png">
+  </div>
+  <div class="col-4">
+    <div id="textoinicio">
+      <h3 id="letrasinicio">UNIÓN ES LOGRO<br>PERIÓDICO DIGITAL</h3>
     </div>
   </div>
+  <div class="col-1" id="inicio-logos-social">
+    <ul>
+      <li>
+        <img src="/img/wplogo.png">
+      </li>
+      <li>
+        <div id="logo-social">
+          <img src="/img/fblogo.png">
+        </div>
+      </li>
+      <li>
+        <div id="logo-social">
+          <img src="/img/iglogo.png">
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
 
+
+<div>
 
   <div>
+    <div class="row">
 
-    <div>
-      <div class="row">
-
-        <div class="col-12">
-          <div id="listadoseccion">
-            <div class="row" id="tit-secc-inicio">
-              <div class="col-6">
-                <h6 class="box_header page_margin_top">NOTICIAS MUNDIALES</h6>
-              </div>
-              <div class="col-6" id="vermassecc">
-                <a href="/views/noticias/NoticiasMundiales">
-                  <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS MUNDIALES</h6>
-                </a>
-              </div>
+      <div class="col-12">
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">NOTICIAS MUNDIALES</h6>
             </div>
-            <div class="row">
-
-
-              <ul class="list-inline" id="listadenotas">
-
-                <li class="list-inline-item" id="elementolistanotas" each="nt:mundiales">
-                  <div class="col-12" id="noticia-enlistada">
-                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
-                      value="Redirect Page">
-                      <img src=nt.getMainImagePath id="imgseccionlista">
-                    </a>
-
-                    <h6 id="titulo-inicio-lista">
-                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
-                    </h6>
-                  </div>
-                </li>
-
-              </ul>
-
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/noticiasmundiales">
+                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS MUNDIALES</h6>
+              </a>
             </div>
-
           </div>
-        </div>
-      </div>
-      <div class="row">
+          <div class="row">
 
-        <div class="col-12">
-          <div id="listadoseccion">
-            <div class="row" id="tit-secc-inicio">
-              <div class="col-6">
-                <h6 class="box_header page_margin_top">DEPORTES</h6>
-              </div>
-              <div class="col-6" id="vermassecc">
-                <a href="/views/noticias/Deportes">
-                  <h6 class="box_header page_margin_top" id="vermasseccion">MÁS DEPORTES</h6>
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <ul class="list-inline" id="listadenotas">
-                
 
-                <li class="list-inline-item" id="elementolistanotas" each="nt:deportes">
-                  <div class="col-12" id="noticia-enlistada">
-                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
-                      value="Redirect Page">
-                      <img src={{{ID}}} id="imgseccionlista">
-                    </a>
+            <ul class="list-inline" id="listadenotas">
 
-                    <h6 id="titulo-inicio-lista">
-                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
-                    </h6>
-                  </div>
-                </li>
+              <li class="list-inline-item" id="elementolistanotas" each="nt:mundiales">
+                <div class="col-12" id="noticia-enlistada">
+                  <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida" value="Redirect Page">
+                    <img src=nt.getMainImagePath id="imgseccionlista">
+                  </a>
 
-              </ul>
+                  <h6 id="titulo-inicio-lista">
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
+                  </h6>
+                </div>
+              </li>
 
-            </div>
+            </ul>
 
           </div>
 
         </div>
       </div>
-      <div class="row">
+    </div>
+    <div class="row">
 
-        <div class="col-12">
-          <div id="listadoseccion">
-            <div class="row" id="tit-secc-inicio">
-              <div class="col-6">
-                <h6 class="box_header page_margin_top">MEDIO AMBIENTE</h6>
-              </div>
-              <div class="col-6" id="vermassecc">
-                <a href="/views/noticias/MedioAmbiente">
-                  <h6 class="box_header page_margin_top" id="vermasseccion">MÁS MEDIO AMBIENTE</h6>
-                </a>
-              </div>
+      <div class="col-12">
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">DEPORTES</h6>
             </div>
-            <div class="row">
-
-              <ul class="list-inline" id="listadenotas">
-
-                <li class="list-inline-item" id="elementolistanotas" each="nt:medio">
-                  <div class="col-12" id="noticia-enlistada">
-                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
-                      value="Redirect Page">
-                      <img src=nt.getMainImagePath id="imgseccionlista">
-                    </a>
-
-                    <h6 id="titulo-inicio-lista">
-                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
-                    </h6>
-                  </div>
-                </li>
-
-              </ul>
-
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/deportes">
+                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS DEPORTES</h6>
+              </a>
             </div>
+          </div>
+          <div class="row">
+            <ul class="list-inline" id="listadenotas">
+
+
+              <li class="list-inline-item" id="elementolistanotas" each="nt:deportes">
+                <div class="col-12" id="noticia-enlistada">
+                  <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida" value="Redirect Page">
+                    <img src={{{ID}}} id="imgseccionlista">
+                  </a>
+
+                  <h6 id="titulo-inicio-lista">
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
+                  </h6>
+                </div>
+              </li>
+
+            </ul>
 
           </div>
+
         </div>
+
       </div>
+    </div>
+    <div class="row">
 
-      <div class="row">
-
-        <div class="col-12">
-          <div id="listadoseccion">
-            <div class="row" id="tit-secc-inicio">
-              <div class="col-6">
-                <h6 class="box_header page_margin_top">DESARROLLO TECNOLOGICO</h6>
-              </div>
-              <div class="col-6" id="vermassecc">
-                <a href="/views/noticias/DesarrolloT">
-                  <h6 class="box_header page_margin_top" id="vermasseccion">MÁS DESARROLLO TECNOLOGICO</h6>
-                </a>
-              </div>
+      <div class="col-12">
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">MEDIO AMBIENTE</h6>
             </div>
-            <div class="row">
-
-              <ul class="list-inline" id="listadenotas">
-
-                <li class="list-inline-item" id="elementolistanotas" each="nt:desarrollo">
-                  <div class="col-12" id="noticia-enlistada">
-                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
-                      value="Redirect Page">
-                      <img src=nt.getMainImagePath id="imgseccionlista">
-                    </a>
-
-                    <h6 id="titulo-inicio-lista">
-                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
-                    </h6>
-                  </div>
-                </li>
-
-              </ul>
-
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/medioambiente">
+                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS MEDIO AMBIENTE</h6>
+              </a>
             </div>
-
           </div>
-        </div>
-      </div>
+          <div class="row">
 
-      <div class="row">
+            <ul class="list-inline" id="listadenotas">
 
-        <div class="col-12">
-          <div id="listadoseccion">
-            <div class="row" id="tit-secc-inicio">
-              <div class="col-6">
-                <h6 class="box_header page_margin_top">ARTE Y CULTURA</h6>
-              </div>
-              <div class="col-6" id="vermassecc">
-                <a href="/views/noticias/ArteyCultura">
-                  <h6 class="box_header page_margin_top" id="vermasseccion">MÁS ARTE Y CULTURA</h6>
-                </a>
-              </div>
-            </div>
-            <div class="row">
+              <li class="list-inline-item" id="elementolistanotas" each="nt:medio">
+                <div class="col-12" id="noticia-enlistada">
+                  <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida" value="Redirect Page">
+                    <img src=nt.getMainImagePath id="imgseccionlista">
+                  </a>
 
-              <ul class="list-inline" id="listadenotas">
+                  <h6 id="titulo-inicio-lista">
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
+                  </h6>
+                </div>
+              </li>
 
-                <li class="list-inline-item" id="elementolistanotas" each="nt:arte">
-                  <div class="col-12" id="noticia-enlistada">
-                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
-                      value="Redirect Page">
-                      <img src=nt.getMainImagePath id="imgseccionlista">
-                    </a>
-
-                    <h6 id="titulo-inicio-lista">
-                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
-                    </h6>
-                  </div>
-                </li>
-
-              </ul>
-
-            </div>
+            </ul>
 
           </div>
 
         </div>
       </div>
+    </div>
 
+    <div class="row">
 
-
-      <div class="row">
-
-        <div class="col-12">
-          <div id="listadoseccion">
-            <div class="row" id="tit-secc-inicio">
-              <div class="col-6">
-                <h6 class="box_header page_margin_top">NOTICIAS LOCALES</h6>
-              </div>
-              <div class="col-6" id="vermassecc">
-                <a href="/views/noticias/NoticiasLocales">
-                  <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS LOCALES</h6>
-                </a>
-              </div>
+      <div class="col-12">
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">DESARROLLO TECNOLOGICO</h6>
             </div>
-            <div class="row">
-
-              <ul class="list-inline" id="listadenotas">
-
-                <li class="list-inline-item" id="elementolistanotas" each="nt:locales">
-                  <div class="col-12" id="noticia-enlistada">
-                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
-                      value="Redirect Page">
-                      <img src=nt.getMainImagePath id="imgseccionlista">
-                    </a>
-
-                    <h6 id="titulo-inicio-lista">
-                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
-                    </h6>
-                  </div>
-                </li>
-
-              </ul>
-
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/desarrollo">
+                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS DESARROLLO TECNOLOGICO</h6>
+              </a>
             </div>
+          </div>
+          <div class="row">
+
+            <ul class="list-inline" id="listadenotas">
+
+              <li class="list-inline-item" id="elementolistanotas" each="nt:desarrollo">
+                <div class="col-12" id="noticia-enlistada">
+                  <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida" value="Redirect Page">
+                    <img src=nt.getMainImagePath id="imgseccionlista">
+                  </a>
+
+                  <h6 id="titulo-inicio-lista">
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
+                  </h6>
+                </div>
+              </li>
+
+            </ul>
 
           </div>
+
         </div>
       </div>
+    </div>
 
+    <div class="row">
 
-      <div class="row">
-
-        <div class="col-12">
-          <div id="listadoseccion">
-            <div class="row" id="tit-secc-inicio">
-              <div class="col-6">
-                <h6 class="box_header page_margin_top">GASTRONOMIA</h6>
-              </div>
-              <div class="col-6" id="vermassecc">
-                <a href="/views/noticias/Gastronomia">
-                  <h6 class="box_header page_margin_top" id="vermasseccion">MÁS GASTRONOMIA</h6>
-                </a>
-              </div>
+      <div class="col-12">
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">ARTE Y CULTURA</h6>
             </div>
-            <div class="row">
-
-              <ul class="list-inline" id="listadenotas">
-
-                <li class="list-inline-item" id="elementolistanotas" each="nt:gastronomia">
-                  <div class="col-12" id="noticia-enlistada">
-                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
-                      value="Redirect Page">
-                      <img src=nt.getMainImagePath id="imgseccionlista">
-                    </a>
-
-                    <h6 id="titulo-inicio-lista">
-                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
-                    </h6>
-                  </div>
-                </li>
-
-              </ul>
-
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/arte">
+                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS ARTE Y CULTURA</h6>
+              </a>
             </div>
+          </div>
+          <div class="row">
+
+            <ul class="list-inline" id="listadenotas">
+
+              <li class="list-inline-item" id="elementolistanotas" each="nt:arte">
+                <div class="col-12" id="noticia-enlistada">
+                  <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida" value="Redirect Page">
+                    <img src=nt.getMainImagePath id="imgseccionlista">
+                  </a>
+
+                  <h6 id="titulo-inicio-lista">
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
+                  </h6>
+                </div>
+              </li>
+
+            </ul>
 
           </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="row">
+
+      <div class="col-12">
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">NOTICIAS LOCALES</h6>
+            </div>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/locales">
+                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS LOCALES</h6>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+
+            <ul class="list-inline" id="listadenotas">
+
+              <li class="list-inline-item" id="elementolistanotas" each="nt:locales">
+                <div class="col-12" id="noticia-enlistada">
+                  <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida" value="Redirect Page">
+                    <img src=nt.getMainImagePath id="imgseccionlista">
+                  </a>
+
+                  <h6 id="titulo-inicio-lista">
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
+                  </h6>
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+
         </div>
       </div>
+    </div>
 
-      <div class="row">
 
-        <div class="col-12">
-          <div id="listadoseccion">
-            <div class="row" id="tit-secc-inicio">
-              <div class="col-6">
-                <h6 class="box_header page_margin_top">KIDS</h6>
-              </div>
-              <div class="col-6" id="vermassecc">
-                <a href="/views/noticias/kids">
-                  <h6 class="box_header page_margin_top" id="vermasseccion">MÁS KIDS</h6>
-                </a>
-              </div>
+    <div class="row">
+
+      <div class="col-12">
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">GASTRONOMIA</h6>
             </div>
-            <div class="row">
-
-              <ul class="list-inline" id="listadenotas">
-
-                <li class="list-inline-item" id="elementolistanotas" each="nt:kids">
-                  <div class="col-12" id="noticia-enlistada">
-                    <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida"
-                      value="Redirect Page">
-                      <img src=nt.getMainImagePath id="imgseccionlista">
-                    </a>
-
-                    <h6 id="titulo-inicio-lista">
-                      <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
-                    </h6>
-                  </div>
-                </li>
-              </ul>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/gastronomia">
+                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS GASTRONOMIA</h6>
+              </a>
             </div>
+          </div>
+          <div class="row">
+
+            <ul class="list-inline" id="listadenotas">
+
+              <li class="list-inline-item" id="elementolistanotas" each="nt:gastronomia">
+                <div class="col-12" id="noticia-enlistada">
+                  <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida" value="Redirect Page">
+                    <img src=nt.getMainImagePath id="imgseccionlista">
+                  </a>
+
+                  <h6 id="titulo-inicio-lista">
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
+                  </h6>
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-12">
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">KIDS</h6>
+            </div>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/kids">
+                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS KIDS</h6>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+
+            <ul class="list-inline" id="listadenotas">
+
+              <li class="list-inline-item" id="elementolistanotas" each="nt:kids">
+                <div class="col-12" id="noticia-enlistada">
+                  <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida" value="Redirect Page">
+                    <img src=nt.getMainImagePath id="imgseccionlista">
+                  </a>
+
+                  <h6 id="titulo-inicio-lista">
+                    <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
+                  </h6>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+{{> footer}}

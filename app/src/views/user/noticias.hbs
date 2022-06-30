@@ -1,0 +1,55 @@
+{{>navigation}}
+<body onload="RemoveButtons()">
+  <div class="wrapper">
+    {{> sidebar}}
+    <div class="main_content">
+      <div class="container">
+        <h1>Lista de noticias del user</h1>
+      </div>
+
+      <div class="container">
+        <a class="btn btn-primary btn-sm" href="/user/crearnoticia"> Crear noticia nueva</a>
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Estado</th>
+              <th id="removable" scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each data}}
+            <tr>
+              <th scope="row">{{id_noticia}}</th>
+              <td>{{titulo}}</td>
+              <td id="estado">{{estado}}</td>
+              <td id="removable">
+                <a class="btn btn-primary btn-sm" href="/user/vernoticia/{{id_noticia}}"> Ver</a>
+                <a class="btn btn-success btn-sm" href="/user/editnoticia/{{id_noticia}}">Editar</a>
+                <a class="btn btn-danger btn-sm" href="/user/deletenoticia/{{id_noticia}}"
+                  onclick="return confirm('¿Esta seguro de eliminar esta noticia?');">Eliminar</a>
+              </td>
+            </tr>
+            {{/each}}
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+  <script>
+    
+    function RemoveButtons() {
+      let estado = document.getElementById("estado").innerHTML
+      let botones = document.querySelectorAll("#removable")
+      if (estado == 'Enviada' || estado == 'Aceptada'){
+        for(i=0; i<botones.length; i++){
+          botones[i].parentNode.removeChild(botones[i])
+        }
+      }
+    }
+
+  </script>
+</body>

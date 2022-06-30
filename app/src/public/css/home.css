@@ -21,7 +21,7 @@ header {
   }
 
 .main_content, .sidebar, .page_layout, #noticia_content {
-    margin-top: 4%;
+    margin-top: 0%;
     margin-bottom: 10%;
 }
 
@@ -384,6 +384,7 @@ header{
 
 nav.navbar.navbar-expand-lg.navbar-fixed-top{
   background-color:rgba(0,0,0,255);
+  position: relative;
 }
  div#imageninicio{
    margin-top: 10%;

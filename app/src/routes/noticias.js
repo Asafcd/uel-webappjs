@@ -3,8 +3,12 @@ const router = express.Router();
 const pool = require('../database')
 
 //#region Router GETS
-router.get('/mundiales', (req,res)=>{
-    res.render('noticias/mundiales.hbs')
+router.get('/mundiales', async (req,res)=>{
+    try{
+        let data = pool.query("SELECT * FROM noticias WHERE etiqueta = 'NoticiasMundiales'")
+        res.render('noticias/mundiales.hbs', {data:data})
+    }catch(err) {console.log(err)}
+    
 });
 router.get('/locales', (req,res)=>{
     res.render('noticias/locales.hbs')

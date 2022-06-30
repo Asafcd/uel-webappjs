@@ -2,10 +2,8 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    text-decoration: none;
-    
+    text-decoration: none;    
 }
-
 
 .wrapper{
     display: flex;
@@ -18,7 +16,7 @@
     width: 200px;
     height: 100%;
     background: black;
-    padding:30px 0;
+    padding:110px 0;
     
 }
 
@@ -56,12 +54,14 @@
 
 .wrapper .main_content{
     width: 100%;
-    margin-left: 200px;
+    margin-left: 210px;
+    height: 100%;
+    margin-bottom: 0%;
     
 }
 div.sidebar{
-    margin-top: 6%;
+    margin-top: 0%;
 }
 
 div.main_content{
-    margin-top: 5%;}
+    margin-top: 0%;}

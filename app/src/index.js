@@ -1,6 +1,7 @@
 // CONST
 const express = require("express");
 const cukip = require("cookie-parser")
+const bodyparser = require("body-parser")
 const exhbs = require('express-handlebars')
 const path = require("path");
 const morgan = require('morgan')
@@ -15,14 +16,15 @@ app.engine(".hbs", exhbs.engine({
   defaultLayout:'main',
   layoutsDir: path.join(app.get('views'), 'layouts'),
   partialsDir: path.join(app.get('views'), 'partials'),
-  extname: '.hbs',
-  helpers: require('./lib/handlebars')
+  extname: '.hbs'
+ // helpers: require('./lib/handlebars')
   }));
 app.set("view engine", "hbs");
 
 //middlewares
 app.use(morgan('dev'))
-app.use(express.urlencoded({extended:false}))
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(express.json())
 
 //GLOBALS

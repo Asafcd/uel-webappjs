@@ -49,7 +49,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/user', (req, res) => {    
-    res.redirect('/user/listar');
+    res.redirect('/user/borradores');
     
 });
 router.get('/admin', (req, res) => {    
