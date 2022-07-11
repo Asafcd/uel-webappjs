@@ -39,17 +39,15 @@
       </div>
     </div>
   </div>
-  <script>
-    
+  <script>    
     function RemoveButtons() {
       let estado = document.getElementById("estado").innerHTML
       let botones = document.querySelectorAll("#removable")
-      if (estado == 'Enviada' || estado == 'Aceptada'){
+      if (estado !='Borrador'){
         for(i=0; i<botones.length; i++){
           botones[i].parentNode.removeChild(botones[i])
         }
       }
     }
-
   </script>
 </body>

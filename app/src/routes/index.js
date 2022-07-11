@@ -5,9 +5,9 @@ const pool = require('../database')
 //#region GUESTS
 router.get('/', async (req, res) => {
     try{
-        let data = await pool.query("SELECT * FROM noticias")
-        console.log(data[0])
-        res.render('home.hbs', {data:data});  
+        let datamundial = await pool.query("SELECT * FROM noticias WHERE etiqueta='NoticiasMundiales'")
+        //console.log(data[0])
+        res.render('home.hbs', {data:datamundial});  
     }catch(err){console.log(err)}  
 });
 

@@ -139,7 +139,7 @@
               <h6 class="box_header page_margin_top">NOTICIAS MUNDIALES</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/noticiasmundiales">
+              <a href="/noticias/mundiales">
                 <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS MUNDIALES</h6>
               </a>
             </div>
@@ -148,18 +148,19 @@
 
 
             <ul class="list-inline" id="listadenotas">
-
+              {{#each datamundial}}
               <li class="list-inline-item" id="elementolistanotas" each="nt:mundiales">
                 <div class="col-12" id="noticia-enlistada">
-                  <a href="/views/noticias/verNoticia/+nt.id_noticia" title="noticia caida" value="Redirect Page">
-                    <img src=nt.getMainImagePath id="imgseccionlista">
+                  <a href="/views/noticias/verNoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
+                    <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
                   </a>
 
                   <h6 id="titulo-inicio-lista">
-                    <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
+                    <a href="/views/noticias/verNoticia/{{id_noticia}}">{{titulo}}</a>
                   </h6>
                 </div>
               </li>
+              {{/each}}
 
             </ul>
 
@@ -269,7 +270,7 @@
                   </a>
 
                   <h6 id="titulo-inicio-lista">
-                    <a href="/views/noticias/verNoticia/+nt.id_noticia" text="nt.titulo"></a>
+                    <a href="/views/noticias/verNoticia/{{id_noticia}}">{{titulo}}</a>
                   </h6>
                 </div>
               </li>
