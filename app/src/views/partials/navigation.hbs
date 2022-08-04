@@ -60,9 +60,10 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <div id="myDropdown" class="dropdown-content">
-                                    <li><a class="dropdown-item" href="/mundiales">Noticias
-                                            Mundiales</a></li>
-                                    <li><a class="dropdown-item" href="/locales">Noticias
+                                    {{#each tag}}
+                                    <li><a class="dropdown-item" href="/{{nombre}}">{{nombre}}
+                                            </a></li>
+                                    <!--li><a class="dropdown-item" href="/locales">Noticias
                                             Locales</a></li>
                                     <li><a class="dropdown-item" href="/deportes">Deportes</a></li>
                                     <li><a class="dropdown-item" href="/arte">Arte y
@@ -73,7 +74,8 @@
                                             Ambiente</a></li>
                                     <li><a class="dropdown-item" href="/gastronomia">Gastronomia</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="/kids">KIDS</a></li>
+                                    <li><a class="dropdown-item" href="/kids">KIDS</a></li-->
+                                    {{/each}}
                                 </div>
                             </ul>
                         </li>

@@ -5,6 +5,7 @@ const pool = require('../database')
 //#region GUESTS
 router.get('/', async (req, res) => {    
     try{
+        let tag = await pool.query("SELECT * FROM etiquetas")
         let mundial = await pool.query("SELECT * FROM noticias WHERE etiqueta='mundial' ORDER BY id_noticia DESC LIMIT 4")  
         let local = await pool.query("SELECT * FROM noticias WHERE etiqueta='local' ORDER BY id_noticia DESC LIMIT 4")  
         let deportes = await pool.query("SELECT * FROM noticias WHERE etiqueta='deportes' ORDER BY id_noticia DESC LIMIT 4")  
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
         let arte = await pool.query("SELECT * FROM noticias WHERE etiqueta='arte y cultura' ORDER BY id_noticia DESC LIMIT 4")  
         let ambi = await pool.query("SELECT * FROM noticias WHERE etiqueta='medio ambiente' ORDER BY id_noticia DESC LIMIT 4")          
         res.render('home.hbs', {
-            mundial, local, deportes, gastro, kids, tec, arte, ambi
+            mundial, local, deportes, gastro, kids, tec, arte, ambi, tag
             });
         }          
     catch(err){console.log(err)}  

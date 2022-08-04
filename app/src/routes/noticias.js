@@ -17,13 +17,18 @@ router.get('/locales', (req,res)=>{
     } catch (error) { console.log(error) }
     
 });
-router.get('/deportes', async (req,res)=>{
+router.get('/:tag', async (req,res)=>{
+    let {tag} = req.params
+    let etiq = {tag}
     try {
+        let tag = await pool.query("SELECT * FROM etiquetas")
         let data = await pool.query(
-            "SELECT n.*, u.nombres as username, u.apellidos as userlasts FROM noticias n JOIN usuarios u WHERE n.etiqueta='deportes' AND n.id_usuario = u.id_usuario ORDER BY n.id_noticia DESC")
+            "SELECT n.*, u.nombres as username, u.apellidos as userlasts, f.nombre as fuente, f.link FROM noticias n \
+            JOIN usuarios u JOIN fuentes f WHERE n.etiqueta=? AND n.id_usuario = u.id_usuario AND n.id_fuente = f.id_fuente \
+            ORDER BY n.id_noticia DESC", [etiq.tag])
         //let fuentes = await poo
-        console.log(data)
-        res.render('noticias/deportes.hbs',{data})
+        //console.log(data[0])
+        res.render('noticias/templateSeccion.hbs',{data,tag})
     } catch (error) { console.log(error) }
     
 });
@@ -65,15 +70,19 @@ router.get('/kids', (req,res)=>{
 //#endregion
 
 //#region verNoticia 
-/*router.get('/vernoticia/:id', async (req,res)=>{
-    let id = req.params
-    console.log(id)
+router.get('/vernoticia/:id', async (req,res)=>{
+    let {id} = req.params
+    let id_noti = {id}
+    //console.log(id_noti)
     try{
-        let data = pool.query("SELECT * FROM noticias WHERE etiqueta = 'mundial' ORDER BY id_noticia DESC")
-        res.render('noticias/mundiales.hbs', {data:data})
+        let data = await pool.query("SELECT n.*, u.nombres as username, u.apellidos as userlasts, f.nombre as fuente, f.link FROM noticias n \
+            JOIN usuarios u JOIN fuentes f WHERE n.id_noticia=? AND n.id_usuario = u.id_usuario AND n.id_fuente = f.id_fuente \
+            ORDER BY n.id_noticia DESC",[id_noti.id])
+        console.log(data[0])
+        res.render('noticias/noticia.hbs', {data:data[0]})
     }catch(err) {console.log(err)}
     
 });
-*/
+
 //#endregion
 module.exports = router;

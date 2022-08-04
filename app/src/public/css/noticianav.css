@@ -59,6 +59,19 @@
     margin-bottom: 0%;
     
 }
+ .tag_content{
+    position: relative;
+    top: 50%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    transform: translate(-50,-50);
+    border-style: groove;
+    border: 2px solid rgb(192, 191, 191);
+    border-radius: 25px;  
+    margin-bottom: 0%;
+    
+}
 div.sidebar{
     margin-top: 0%;
 }
