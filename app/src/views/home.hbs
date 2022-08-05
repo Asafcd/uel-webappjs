@@ -1,8 +1,5 @@
 {{> navigation}}
 
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v11.0"
-  nonce="pNKTv1lK"></script>
 
 <div class="row">
   <div class="col-6" id="imageninicio">
@@ -32,6 +29,9 @@
   </div>
 </div>
 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v11.0"
+  nonce="pNKTv1lK"></script>
 <div class="container">
     <div class="row">
       <div class="col-12">
@@ -41,7 +41,7 @@
               <h6 class="box_header page_margin_top">NOTICIAS MUNDIALES</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/mundiales">
+              <a href="/noticias/mundial">
                 <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS MUNDIALES</h6>
               </a>
             </div>
@@ -51,7 +51,7 @@
               {{#each mundial}}
               <li class="list-inline-item" id="elementolistanotas">
                 <div class="col-12" id="noticia-enlistada">
-                  <a href="/views/noticias/verNoticia/{{id_noticia}}" title="{{titulo}}" value="Redirect Page">
+                  <a href="noticias/vernoticia/{{id_noticia}}" title="{{titulo}}" value="Redirect Page">
                     <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
                   </a>
                   <h6 id="titulo-inicio-lista">
@@ -84,11 +84,11 @@
               {{#each deportes}}
               <li class="list-inline-item" id="elementolistanotas">
                 <div class="col-12" id="noticia-enlistada">
-                  <a href="/views/noticias/verNoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
+                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
                     <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
                   </a>
                   <h6 id="titulo-inicio-lista">
-                    <a href="/views/noticias/verNoticia/{{id_noticia}}">{{titulo}}</a>
+                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
                   </h6>
                 </div>
               </li>
@@ -111,7 +111,7 @@
               <h6 class="box_header page_margin_top">MEDIO AMBIENTE</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/medioambiente">
+              <a href="/noticias/medio ambiente">
                 <h6 class="box_header page_margin_top" id="vermasseccion">MÁS MEDIO AMBIENTE</h6>
               </a>
             </div>
@@ -123,11 +123,11 @@
               {{#each ambi}}
               <li class="list-inline-item" id="elementolistanotas">
                 <div class="col-12" id="noticia-enlistada">
-                  <a href="/views/noticias/verNoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
+                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
                     <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
                   </a>
                   <h6 id="titulo-inicio-lista">
-                    <a href="/views/noticias/verNoticia/{{id_noticia}}">{{titulo}}</a>
+                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
                   </h6>
                 </div>
               </li>
@@ -150,7 +150,7 @@
               <h6 class="box_header page_margin_top">DESARROLLO TECNOLOGICO</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/desarrollo">
+              <a href="/noticias/tecnologia">
                 <h6 class="box_header page_margin_top" id="vermasseccion">MÁS DESARROLLO TECNOLOGICO</h6>
               </a>
             </div>
@@ -162,11 +162,11 @@
               {{#each tec}}
               <li class="list-inline-item" id="elementolistanotas">
                 <div class="col-12" id="noticia-enlistada">
-                  <a href="/views/noticias/verNoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
+                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
                     <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
                   </a>
                   <h6 id="titulo-inicio-lista">
-                    <a href="/views/noticias/verNoticia/{{id_noticia}}">{{titulo}}</a>
+                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
                   </h6>
                 </div>
               </li>
@@ -189,7 +189,7 @@
               <h6 class="box_header page_margin_top">ARTE Y CULTURA</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/arte">
+              <a href="/noticias/arte y cultura">
                 <h6 class="box_header page_margin_top" id="vermasseccion">MÁS ARTE Y CULTURA</h6>
               </a>
             </div>
@@ -201,11 +201,11 @@
               {{#each arte}}
               <li class="list-inline-item" id="elementolistanotas">
                 <div class="col-12" id="noticia-enlistada">
-                  <a href="/views/noticias/verNoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
+                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
                     <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
                   </a>
                   <h6 id="titulo-inicio-lista">
-                    <a href="/views/noticias/verNoticia/{{id_noticia}}">{{titulo}}</a>
+                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
                   </h6>
                 </div>
               </li>
@@ -231,7 +231,7 @@
               <h6 class="box_header page_margin_top">NOTICIAS LOCALES</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/locales">
+              <a href="/noticias/local">
                 <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS LOCALES</h6>
               </a>
             </div>
@@ -243,11 +243,11 @@
              {{#each local}}
               <li class="list-inline-item" id="elementolistanotas">
                 <div class="col-12" id="noticia-enlistada">
-                  <a href="/views/noticias/verNoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
+                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
                     <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
                   </a>
                   <h6 id="titulo-inicio-lista">
-                    <a href="/views/noticias/verNoticia/{{id_noticia}}">{{titulo}}</a>
+                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
                   </h6>
                 </div>
               </li>
@@ -283,11 +283,11 @@
               {{#each gastro}}
               <li class="list-inline-item" id="elementolistanotas">
                 <div class="col-12" id="noticia-enlistada">
-                  <a href="/views/noticias/verNoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
+                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
                     <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
                   </a>
                   <h6 id="titulo-inicio-lista">
-                    <a href="/views/noticias/verNoticia/{{id_noticia}}">{{titulo}}</a>
+                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
                   </h6>
                 </div>
               </li>
@@ -322,11 +322,11 @@
               {{#each kids}}
               <li class="list-inline-item" id="elementolistanotas">
                 <div class="col-12" id="noticia-enlistada">
-                  <a href="/views/noticias/verNoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
+                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
                     <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
                   </a>
                   <h6 id="titulo-inicio-lista">
-                    <a href="/views/noticias/verNoticia/{{id_noticia}}">{{titulo}}</a>
+                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
                   </h6>
                 </div>
               </li>
@@ -337,3 +337,4 @@
       </div>
     </div>
 </div>
+{{> footer}}

@@ -298,14 +298,14 @@ div#seccionautor.col-4 {
 
 
 }
-img.banner{
-width: 110%; 
-height:85%;
-position: relative;
- }
+
+img.banner {
+  width: 110%;
+  position: relative;
+}
 
 
-#textoautor{
+#textoautor {
 
   font-family: 'Poppins', sans-serif;
   font-size: 100%;
