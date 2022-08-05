@@ -19,9 +19,8 @@
                             <div class="mb-3">
                                 <div class="form-group row">
                                     <label class="form-label col-md-2" for="contenido">Contenido:</label>
-                                    <textarea class="form-control col-md" name="contenido" id="contenido"
+                                    <textarea class="form-control col-md" placeholder="Conenido de noticia..." name="contenido" id="floatingTextarea2"
                                         rows="6"></textarea>
-
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -34,15 +33,9 @@
                                 <div class="form-group row">
                                     <label class="form-label col-md-2" for="Etiqueta">Categoria:</label>
                                     <select class="form-control form-control-sm col-md" name="etiqueta" id="Etiqueta">
-                                        <option value="Deportes" text="Deportes">Deportes
-                                        <option value="NoticiasMundiales" text="'Noticias Mundiales'">Noticias
-                                            Mundiales
-                                        <option value="MedioAmbiente" text="'Medio Ambiente'">Medio Ambiente
-                                        <option value="DesarrolloT" text="DesarrolloT">Desarrollo Tecnológico
-                                        <option value="ArteyCultura" text="'Arte y Cultura'">Arte y cultura
-                                        <option value="NoticiasLocales" text="'Noticias Locales'">Noticias Locales
-                                        <option value="Gastronomia" text="Gastronomia">Gastronomia
-                                        <option value="Kids" text="Kids">Kids
+                                        {{#each tag}}
+                                        <option value={{id}}>{{nombre}}
+                                        {{/each}}
                                     </select>
                                 </div>
                             </div>
@@ -59,24 +52,25 @@
 
                             <div class="mb-3">
                                 <div class="form-group row">
-                                    <label class="form-label col-md-2" for="fuentes">Fuentes:</label>
-                                    <table id=fuentes>
-                                        <thead>
-                                            <tr>
-                                                <th> Titulo</th>
-                                                <th> Link</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input id="fuentenombre" name="fuentenombre" type="text" />fuente
-                                                    nombre </td>
-                                                <td><input id="fuentelink" name="fuentelink" type="text" />fuenet link
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
+                                    <div class="col">
+                                        <label class="form-label col-md-2">Fuentes:</label>
+                                    </div>
+                                    <div class="col">
+                                        <input name="fuente" list="fuentes" id="exampleDataList" placeholder=".."/>
+                                        <datalist id="fuentes">
+                                            {{#each fuentes}}
+                                            <option value={{id}}>{{nombre}}
+                                            {{/each}}
+                                        </datalist>
+                                    </div>                                    
+                                    <div class="col">
+                                        <input name="link" list="links" id="exampleDataList" placeholder=".."/>
+                                        <datalist id="links">
+                                            {{#each fuentes}}
+                                            <option  value={{link}}>{{link}}
+                                            {{/each}}
+                                        </datalist>                                                                
+                                    </div>
                                 </div>
                             </div>
 
