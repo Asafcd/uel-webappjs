@@ -5,7 +5,7 @@
         <div class="container">
             <div class="card bg-light">
                 <div class="card-header bg-dark text-white" text="titulo"> Todos los campos son requeridos.</div>
-                <form action="/user/crearnoticia" method="POST">
+                <form id="formnoti" action="/user/crearnoticia" method="POST" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="container">
                             <div class="mb-3">
@@ -56,7 +56,7 @@
                                         <label class="form-label col-md-2">Fuentes:</label>
                                     </div>
                                     <div class="col">
-                                        <input name="fuente" list="fuentes" id="exampleDataList" placeholder=".."/>
+                                        <input name="fuente" list="fuentes" id="exampleDataList" />
                                         <datalist id="fuentes">
                                             {{#each fuentes}}
                                             <option value={{id}}>{{nombre}}
@@ -64,7 +64,7 @@
                                         </datalist>
                                     </div>                                    
                                     <div class="col">
-                                        <input name="link" list="links" id="exampleDataList" placeholder=".."/>
+                                        <input name="link" list="links" id="exampleDataList" />
                                         <datalist id="links">
                                             {{#each fuentes}}
                                             <option  value={{link}}>{{link}}
@@ -77,18 +77,18 @@
                             <div class="mb-3">
                                 <div text="recordatorio"></div>
                                 <ul>
-                                    <li><label class="col-md-2" for="mainImage">Imagen Principal</label>
-                                        <input type="file" name="mainimg" class="form-control form-control-sm col-md-6"
-                                            id="mainImage" accept="image/png, image/jpeg" />
-                                        <p id="error_file"></p>
-                                    </li>
-                                    <li>
-                                        <label class="col-md-2" for="extraImage">Segunda imagen</label>
-                                        <input type="file" name="extraimg" class="form-control form-control-sm col-md-6"
-                                            id="extraImage" accept="image/png, image/jpeg" />
+                                    <li><label class="col-md-2" for="file">Imágenes</label>
+                                        <input type="file" multiple name="newsImages" class="form-control form-control-sm col-md-6"
+                                            id="file" accept="image/png, image/jpeg" />
                                         <p id="error_file"></p>
                                     </li>
                                     <!--li>
+                                        <label class="col-md-2" for="file">Segunda imagen</label>
+                                        <input type="file" name="newsImages" class="form-control form-control-sm col-md-6"
+                                            id="file" accept="image/png, image/jpeg" />
+                                        <p id="error_file"></p>
+                                    </li>
+                                    <li>
                                         <label class="col-md-2" for="extraImage2" >Tercera imagen</label>
                                         <input type="file" name="extraImage" class="form-control form-control-sm col-md-6" id="extraImage2" accept="image/png, image/jpeg"
                                                value="noticia.getExtraImagePath2"/>
@@ -106,12 +106,26 @@
                     </div>
                     <div class="card-footer bg-dark">
                         <div class="mb-3">
-                            <input type="submit" class="btn btn-primary btn-sm text-center" text="Guardar">
+                            <!--input type="submit" class="btn btn-primary btn-sm text-center" text="Guardar"-->
+                            <button id="btnsubmit" class="btn btn-primary btn-sm text-center" type='submit'>Guardar</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
+    <script>
+        let formnoti = document.querySelector("#formnoti").addEventListener('submit', async function (e) {
+            const files = e.target.uploadedImages.files;
+            if (files.length != 0) {
+                for (const single_file of files) {
+                    data.append('uploadedImages', single_file)
+                }
+            }
+        });
+        const submit_data_fetch = await fetch('/user/crearnoticia', {
+            method: 'POST',
+            body: data
+        });
+    </script>
 </div>

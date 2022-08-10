@@ -1,7 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../database");
+const multer = require("multer");
+const path = require('path');
+const mime = require('mime');
+var fs = require('fs-extra');
 
+var dir = path.join(__dirname, '../public/img/noticias-imagenes/')
+const storage = multer.diskStorage({
+    destination: dir,
+    filename: function(req,file,cb){
+        const fileName = file.originalname 
+        cb(null,fileName);
+    }
+})
+const upload = multer({
+  storage:storage
+}).array("newsImages",4)
 //#region GETS
 router.get("/borradores", async (req, res) => {
   try {
@@ -92,10 +107,9 @@ router.get("/vermensaje/:id_mensaje", async (req, res) => {
 router.get("/vernoticia/:id_noticia", async (req, res) => {
   const { id_noticia } = req.params;
   let id = { id_noticia };
-  console.log(id);
   try {
     let data = await pool.query("SELECT * FROM noticias WHERE id_noticia=?", [ id.id_noticia ]);
-    console.log(data[0])
+    //console.log(data[0])
     let fuente = await pool.query("SELECT nombre, link FROM fuentes WHERE id_fuente=?", [data[0].id_fuente] );
     let autor = await pool.query(
       "SELECT id_usuario, nombres, apellidos FROM usuarios WHERE id_usuario=?",
@@ -170,49 +184,76 @@ router.get("/enviar/:id_noticia", async (req, res) => {
 //#endregion
 //#region POSTS
 
-router.post("/crearnoticia", async (req, res) => {
-  let { titulo, contenido, estado, etiqueta,
-    autor, fuente, link, mainimg, extraimg,  } = req.body;
-  let noticianew = { titulo, contenido, estado, etiqueta,
-    autor, fuente, link, mainimg, extraimg, };
+router.post("/crearnoticia", upload, async (req, res) => {
+  let idfolder=""
+  let imgs = req.files
+  console.log(req.files)
+  let img0=""
+  let img1=""
+  let img2=""
+  let img3=""
 
-    console.log(noticianew.link)
-  //Crear entidades desde el add form, solo si no existen y no son strings vacios
-  let aa = noticianew.fuente
-  let aabool = false;
-  let fuentes = await pool.query("SELECT * FROM fuentes");
+  let { titulo, contenido, estado, etiqueta, autor, fuente, link  } = req.body;        
+  let noticianew = { titulo, contenido, estado, etiqueta, autor, fuente, link };
+  switch(imgs.length){
+        case 1:
+          img0 = imgs[0].filename
+                 
+          break;
+        case 2:
+          img0 = imgs[0].filename       
+          img1 = imgs[1].filename       
+          break;
+        case 3:
+          img0 = imgs[0].filename       
+          img1 = imgs[1].filename 
+          img2 = imgs[2].filename
+          break;
+        case 4:
+          img0 = imgs[0].filename       
+          img1 = imgs[1].filename 
+          img2 = imgs[2].filename
+          img3 = imgs[3].filename
+          break;
+      }
+//#region Crear entidades desde el add form, solo si no existen y no son strings vacios
+      let aa = noticianew.fuente.toLowerCase()
+      let aabool = false;
+      let fuentes = await pool.query("SELECT * FROM fuentes");
 
-  fuentes.forEach((a) => {
-    if (aa.indexOf(a.nombre) !== -1 || aa==="") {
-      aabool = true;
-    }    
-  });
-  if (!aabool) {
-    try {
-      await pool.query( "INSERT INTO fuentes(nombre, link) VALUES(?,?)", [noticianew.fuente, noticianew.link] );
-    } catch (err) { console.log(err); }
-  }  
-    let fuenteid = await pool.query("SELECT id_fuente FROM fuentes WHERE nombre = ?",[noticianew.fuente])
-    //console.log(fuenteid[0].id_fuente)
-  try {
+      fuentes.forEach((a) => {
+          if (aa.indexOf(a.nombre.toLowerCase()) !== -1 || aa==="") {
+          aabool = true;
+          }    
+      });
+      if (!aabool) {
+          try {
+          await pool.query( "INSERT INTO fuentes(nombre, link) VALUES(?,?)", [noticianew.fuente, noticianew.link] );
+          } catch (err) { console.log(err); }
+      }  
+      let fuenteid = await pool.query("SELECT id_fuente FROM fuentes WHERE nombre = ?",[noticianew.fuente])
+  //#endregion
+  /*try {
     await pool.query(
-      "INSERT INTO noticias(id_usuario,id_fuente,titulo,contenido,estado,etiqueta,main_image,extra_image1) VALUES(?,?,?,?,?,?,?,?)",
-      [
-        noticianew.autor,
-        fuenteid[0].id_fuente,
-        noticianew.titulo,
-        noticianew.contenido,
-        noticianew.estado,
-        noticianew.etiqueta,
-        noticianew.mainimg,
-        noticianew.extraimg,
-      ]
-    );
-    res.redirect("/user");
-  } catch (e) {
-    console.log(e);
-  }
+            "INSERT INTO noticias(id_usuario,id_fuente,titulo,contenido,estado,etiqueta, img0,img1,img2,img3) VALUES(?,?,?,?,?,?,?,?,?,?)",
+            [ noticianew.autor, fuenteid[0].id_fuente, noticianew.titulo, noticianew.contenido, noticianew.estado,
+              noticianew.etiqueta, img0,img1,img2,img3 ]
+            );        
+  } catch (error) { console.log(error) }
+  let id = await pool.query("SELECT id_noticia FROM noticias WHERE titulo=? ORDER BY id_noticia DESC LIMIT 1",[noticianew.titulo])
+  idfolder = id[0].id_noticia+'/'
+  var oldpath = dir+img0
+  var newpath = dir+idfolder
+  if (!fs.existsSync(newpath)){
+          fs.mkdirSync(newpath);
+      }
+
+  fs.move( oldpath, newpath+img0, function (err) {
+    if (err) return console.error(err)
+    console.log("success!")
+  })*/
+   
+        res.redirect('/user/borradores')
 });
-//#endregion
 
 module.exports = router;

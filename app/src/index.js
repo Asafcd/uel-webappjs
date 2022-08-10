@@ -6,7 +6,7 @@ const exhbs = require('express-handlebars')
 const path = require("path");
 const morgan = require('morgan')
 const favicon = require('serve-favicon');
-
+const multer = require("multer");
 const app = express();
 
 //SETTINGS
