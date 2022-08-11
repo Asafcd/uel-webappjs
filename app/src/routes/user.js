@@ -6,6 +6,7 @@ const path = require('path');
 const mime = require('mime');
 var fs = require('fs-extra');
 
+//#region config metodo para subida de archivos
 var dir = path.join(__dirname, '../public/img/noticias-imagenes/')
 const storage = multer.diskStorage({
     destination: dir,
@@ -17,6 +18,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage:storage
 }).array("newsImages",4)
+//#endregion
 //#region GETS
 router.get("/borradores", async (req, res) => {
   try {
@@ -143,15 +145,12 @@ router.get("/editnoticia/:id_noticia", async (req, res) => {
   const { id_noticia } = req.params;
   let id = { id_noticia };
   try {
-    let data = await pool.query("SELECT * FROM noticias WHERE id_noticia=?", [
-      id.id_noticia,
-    ]);
-    let users = await pool.query(
-      "SELECT id_usuario, nombres, apellidos FROM usuarios WHERE id_usuario=?",
-      [data[0].id_usuario]
-    );
-    console.log(users);
-    res.render("user/crearnoticia.hbs", { users, data });
+    let data = await pool.query("SELECT * FROM noticias WHERE id_noticia=?", [ id.id_noticia ]);
+    let users = await pool.query("SELECT id_usuario, nombres, apellidos FROM usuarios WHERE id_usuario=?", [data[0].id_usuario] );
+    let tag = await pool.query("SELECT * FROM etiquetas");
+    let fuentes = await pool.query("SELECT * FROM fuentes");
+    //console.log(users);
+    res.render("user/editar.hbs", { users:users[0], data:data[0], tag, fuentes });
   } catch (error) {
     console.log(error);
   }
@@ -187,7 +186,6 @@ router.get("/enviar/:id_noticia", async (req, res) => {
 router.post("/crearnoticia", upload, async (req, res) => {
   let idfolder=""
   let imgs = req.files
-  //console.log(req.files)
   let img0=""
   let img1=""
   let img2=""
@@ -300,6 +298,124 @@ router.post("/crearnoticia", upload, async (req, res) => {
   //#endregion
         
         res.redirect('/user/borradores')
+});
+
+router.post("/editnoticia/:id_noticia", upload, async (req, res) => {
+  const { id_noticia } = req.params;
+  let id = { id_noticia };
+  let idfolder = id.id_noticia
+  let imgs = req.files
+  let img0=""
+  let img1=""
+  let img2=""
+  let img3=""
+  let fuenteid=""
+  let { titulo, contenido, estado, etiqueta, autor, fuente, link  } = req.body;        
+  let noticianew = { titulo, contenido, estado, etiqueta, autor, fuente, link };
+  switch(imgs.length){//asignar nombres de imagenes para la bd
+        case 1:
+          img0 = imgs[0].filename                 
+          break;
+        case 2:
+          img0 = imgs[0].filename       
+          img1 = imgs[1].filename       
+          break;
+        case 3:
+          img0 = imgs[0].filename       
+          img1 = imgs[1].filename 
+          img2 = imgs[2].filename
+          break;
+        case 4:
+          img0 = imgs[0].filename       
+          img1 = imgs[1].filename 
+          img2 = imgs[2].filename
+          img3 = imgs[3].filename
+          break;
+      }
+//#region Crear entidades desde el add form, solo si no existen y no son strings vacios
+      let aa = noticianew.fuente.toLowerCase()
+      let aabool = false;
+      let fuentes = await pool.query("SELECT * FROM fuentes");
+
+      fuentes.forEach((a) => {
+          if (aa.indexOf(a.nombre.toLowerCase()) !== -1 || aa==="") {
+          aabool = true;
+          }    
+      });
+      if (!aabool) {
+          try {
+          let fuente = await pool.query( "INSERT INTO fuentes(nombre, link) VALUES(?,?)", [noticianew.fuente, noticianew.link] );
+          fuenteid = fuente.insertedId
+          } catch (err) { console.log(err); }
+      } else{
+        let fuente = await pool.query("SELECT id_fuente FROM noticias WHERE id_noticia =?",[idfolder])
+        fuenteid = fuente[0].id_fuente
+        }
+      
+  //#endregion
+
+//#region mover imagenes a carpeta con id_noticia
+  var newpath = dir+idfolder+"/"
+  switch(imgs.length){
+    case 1:
+      fs.move( dir+img0, newpath+img0, function (err) {
+        if (err) return console.error(err)
+        console.log("success1")
+      })
+      break;
+    case 2:
+      fs.move( dir+img0, newpath+img0, function (err) {
+        if (err) return console.error(err)
+        console.log("success!0")
+      })
+      fs.move( dir+img1, newpath+img1, function (err) {
+        if (err) return console.error(err)
+        console.log("success!1")
+      })
+      break;
+    case 3:
+      fs.move( dir+img0, newpath+img0, function (err) {
+        if (err) return console.error(err)
+        console.log("success!0")
+      })
+      fs.move( dir+img1, newpath+img1, function (err) {
+        if (err) return console.error(err)
+        console.log("success!1")
+      })
+      fs.move( dir+img2, newpath+img2, function (err) {
+        if (err) return console.error(err)
+        console.log("success!2")
+      })
+      break;
+    case 4:
+      fs.move( dir+img0, newpath+img0, function (err) {
+        if (err) return console.error(err)
+        console.log("success0")
+      })
+      fs.move( dir+img1, newpath+img1, function (err) {
+        if (err) return console.error(err)
+        console.log("success1")
+      })
+      fs.move( dir+img2, newpath+img2, function (err) {
+        if (err) return console.error(err)
+        console.log("success2")      
+      })
+      fs.move( dir+img3, newpath+img3, function (err) {
+        if (err) return console.error(err)
+        console.log("success3")
+      })
+      break;
+  }
+  //#endregion
+  try {
+    await pool.query(
+            "UPDATE noticias SET id_usuario=?,id_fuente=?,titulo=?,contenido=?,estado=?,etiqueta=?, img0=?,img1=?,img2=?,img3=? WHERE id_noticia=?",
+            [ noticianew.autor, fuenteid, noticianew.titulo, noticianew.contenido, noticianew.estado,
+              noticianew.etiqueta, img0,img1,img2,img3, idfolder ]
+            );      
+    res.redirect("/user/borradores")
+  } catch (error) { console.log(error) }
+  
 });
 
 module.exports = router;

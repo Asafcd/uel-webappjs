@@ -4,22 +4,23 @@
     <div class="main_content">
         <div class="container">
             <div class="card bg-light">
+                <h2>Editando Noticia ID: {{data.id_noticia}}</h2>
                 <div class="card-header bg-dark text-white" text="titulo"> Todos los campos son requeridos.</div>
-                <form id="formnoti" action="/user/crearnoticia" method="POST" enctype="multipart/form-data">
+                <form id="formnoti" action="/user/editnoticia/{{data.id_noticia}}" method="POST" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="container">
                             <div class="mb-3">
                                 <div class="form-group row">
                                     <label class="form-label col-md-1" for="Titulo">Titulo:</label>
                                     <input type="text" class="form-control form-control-sm col-md" id="titulo"
-                                        name="titulo" placeholder="titulo noticia">
+                                        name="titulo" placeholder="{{data.titulo}}">
                                     <small></small>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <div class="form-group row">
                                     <label class="form-label col-md-2" for="contenido">Contenido:</label>
-                                    <textarea class="form-control col-md" placeholder="Conenido de noticia..." name="contenido" id="floatingTextarea2"
+                                    <textarea class="form-control col-md" placeholder="{{data.contenido}}" name="contenido" id="floatingTextarea2"
                                         rows="6"></textarea>
                                 </div>
                             </div>
@@ -43,9 +44,9 @@
                                 <div class="form-group row">
                                     <label class="form-label col-md-2" for="Titulo">Autor:</label>
                                     <select class="form-control form-control-sm col-md" name="autor" id="autor">
-                                        {{#each users}}
-                                        <option value={{id_usuario}} />{{nombres}} {{apellidos}}
-                                        {{/each}}
+                                        
+                                        <option value={{users.id_usuario}} />{{users.nombres}} {{users.apellidos}}
+                                        
                                     </select>
                                 </div>
                             </div>
