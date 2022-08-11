@@ -187,7 +187,7 @@ router.get("/enviar/:id_noticia", async (req, res) => {
 router.post("/crearnoticia", upload, async (req, res) => {
   let idfolder=""
   let imgs = req.files
-  console.log(req.files)
+  //console.log(req.files)
   let img0=""
   let img1=""
   let img2=""
@@ -195,10 +195,9 @@ router.post("/crearnoticia", upload, async (req, res) => {
 
   let { titulo, contenido, estado, etiqueta, autor, fuente, link  } = req.body;        
   let noticianew = { titulo, contenido, estado, etiqueta, autor, fuente, link };
-  switch(imgs.length){
+  switch(imgs.length){//asignar nombres de imagenes para la bd
         case 1:
-          img0 = imgs[0].filename
-                 
+          img0 = imgs[0].filename                 
           break;
         case 2:
           img0 = imgs[0].filename       
@@ -233,26 +232,73 @@ router.post("/crearnoticia", upload, async (req, res) => {
       }  
       let fuenteid = await pool.query("SELECT id_fuente FROM fuentes WHERE nombre = ?",[noticianew.fuente])
   //#endregion
-  /*try {
-    await pool.query(
+  try {
+    let noti = await pool.query(
             "INSERT INTO noticias(id_usuario,id_fuente,titulo,contenido,estado,etiqueta, img0,img1,img2,img3) VALUES(?,?,?,?,?,?,?,?,?,?)",
             [ noticianew.autor, fuenteid[0].id_fuente, noticianew.titulo, noticianew.contenido, noticianew.estado,
               noticianew.etiqueta, img0,img1,img2,img3 ]
-            );        
+            );  
+    idfolder = noti.insertId //id de la noticia recien insertada
   } catch (error) { console.log(error) }
-  let id = await pool.query("SELECT id_noticia FROM noticias WHERE titulo=? ORDER BY id_noticia DESC LIMIT 1",[noticianew.titulo])
-  idfolder = id[0].id_noticia+'/'
-  var oldpath = dir+img0
-  var newpath = dir+idfolder
+
+//#region mover imagenes a carpeta con id_noticia
+  var newpath = dir+idfolder+"/"
   if (!fs.existsSync(newpath)){
           fs.mkdirSync(newpath);
       }
 
-  fs.move( oldpath, newpath+img0, function (err) {
-    if (err) return console.error(err)
-    console.log("success!")
-  })*/
-   
+  switch(imgs.length){
+    case 1:
+      fs.move( dir+img0, newpath+img0, function (err) {
+        if (err) return console.error(err)
+        console.log("success1")
+      })
+      break;
+    case 2:
+      fs.move( dir+img0, newpath+img0, function (err) {
+        if (err) return console.error(err)
+        console.log("success!0")
+      })
+      fs.move( dir+img1, newpath+img1, function (err) {
+        if (err) return console.error(err)
+        console.log("success!1")
+      })
+      break;
+    case 3:
+      fs.move( dir+img0, newpath+img0, function (err) {
+        if (err) return console.error(err)
+        console.log("success!0")
+      })
+      fs.move( dir+img1, newpath+img1, function (err) {
+        if (err) return console.error(err)
+        console.log("success!1")
+      })
+      fs.move( dir+img2, newpath+img2, function (err) {
+        if (err) return console.error(err)
+        console.log("success!2")
+      })
+      break;
+    case 4:
+      fs.move( dir+img0, newpath+img0, function (err) {
+        if (err) return console.error(err)
+        console.log("success0")
+      })
+      fs.move( dir+img1, newpath+img1, function (err) {
+        if (err) return console.error(err)
+        console.log("success1")
+      })
+      fs.move( dir+img2, newpath+img2, function (err) {
+        if (err) return console.error(err)
+        console.log("success2")      
+      })
+      fs.move( dir+img3, newpath+img3, function (err) {
+        if (err) return console.error(err)
+        console.log("success3")
+      })
+      break;
+  }
+  //#endregion
+        
         res.redirect('/user/borradores')
 });
 
