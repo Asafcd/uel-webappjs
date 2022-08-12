@@ -3,19 +3,28 @@ const router = express.Router();
 const pool = require('../database')
 
 //#region GUESTS
-router.get('/', async (req, res) => {    
+router.get('/', async (req, res) => {
+    let qry = "SELECT * FROM noticias WHERE etiqueta='?' AND estado='Aceptada' ORDER BY id_noticia DESC LIMIT 4"
+    
     try{
         let tag = await pool.query("SELECT * FROM etiquetas")
-        let mundial = await pool.query("SELECT * FROM noticias WHERE etiqueta='mundial' ORDER BY id_noticia DESC LIMIT 4")  
-        let local = await pool.query("SELECT * FROM noticias WHERE etiqueta='local' ORDER BY id_noticia DESC LIMIT 4")  
-        let deportes = await pool.query("SELECT * FROM noticias WHERE etiqueta='deportes' ORDER BY id_noticia DESC LIMIT 4")  
-        let gastro = await pool.query("SELECT * FROM noticias WHERE etiqueta='gastronomia' ORDER BY id_noticia DESC LIMIT 4")  
-        let kids = await pool.query("SELECT * FROM noticias WHERE etiqueta='kids' ORDER BY id_noticia DESC LIMIT 4")  
-        let tec = await pool.query("SELECT * FROM noticias WHERE etiqueta='tecnologia' ORDER BY id_noticia DESC LIMIT 4")  
-        let arte = await pool.query("SELECT * FROM noticias WHERE etiqueta='arte y cultura' ORDER BY id_noticia DESC LIMIT 4")  
-        let ambi = await pool.query("SELECT * FROM noticias WHERE etiqueta='medio ambiente' ORDER BY id_noticia DESC LIMIT 4")          
+        tag.forEach(e => { //tags en mayus
+            let n = e.nombre.toUpperCase()
+            e.nombre = n
+        });
+        let mundial = await pool.query(qry, 1)
+        let local = await pool.query(qry, 2)
+        let deportes = await pool.query(qry, 3)
+        let gastro = await pool.query(qry, 1)
+        let tec = await pool.query(qry, 1)
+        let kids = await pool.query(qry, 1)
+        let arte = await pool.query(qry, 1)
+        let ambi = await pool.query(qry, 1)
+        console.log(mundial)
         res.render('home.hbs', {
-            mundial, local, deportes, gastro, kids, tec, arte, ambi, tag
+            mundial, 
+            local, deportes, gastro, kids, tec, arte, ambi,
+            tag
             });
         }          
     catch(err){console.log(err)}  
@@ -63,7 +72,7 @@ router.get('/user', (req, res) => {
     
 });
 router.get('/admin', (req, res) => {    
-    res.redirect('/admin/menu');
+    res.redirect('/admin/recibidas');
     
 });
 

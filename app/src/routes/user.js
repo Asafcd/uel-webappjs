@@ -21,44 +21,57 @@ const upload = multer({
 //#endregion
 //#region GETS
 router.get("/borradores", async (req, res) => {
+  let tag = "Borrador"
   try {
     let data = await pool.query(
       "SELECT * FROM noticias WHERE estado='Borrador'"
     );
     //console.log(data)
-    res.render("user/noticias.hbs", { data });
+    res.render("user/noticias.hbs", { data, tag });
   } catch (error) {
     console.log(error);
   }
 });
 router.get("/enviadas", async (req, res) => {
+  let tag="Enviada"
   try {
     let data = await pool.query(
-      "SELECT * FROM noticias WHERE id_usuario=1 AND estado='Enviada'"
+      "SELECT * FROM noticias WHERE estado='Enviada'"
     );
     //console.log(data)
-    res.render("user/noticias.hbs", { data });
+    res.render("user/noticias.hbs", { data, tag });
   } catch (error) {
     console.log(error);
   }
 });
 router.get("/aceptadas", async (req, res) => {
+  let tag = "Aceptadas"
   try {
     let data = await pool.query(
-      "SELECT * FROM noticias WHERE id_usuario=1 AND estado='Aceptada'"
+      "SELECT * FROM noticias WHERE estado='Aceptada'"
     );
     //console.log(data)
-    res.render("user/noticias.hbs", { data });
+    res.render("user/noticias.hbs", { data, tag });
+  } catch (error) {
+    console.log(error);
+  }
+});
+router.get("/rechazadas", async (req, res) => {
+  let tag = "Rechazadas"
+    try{
+      let data = await pool.query("SELECT n.id_noticia, u.nombres, u.apellidos, n.titulo, n.estado, m.contenido as mensaje FROM noticias n\
+        JOIN usuarios u JOIN mensajes m WHERE n.estado='Rechazada' AND n.id_usuario = u.id_usuario AND n.id_noticia = m.id_noticia")   
+      res.render("user/noticiasrechazadas.hbs", { data,tag });
   } catch (error) {
     console.log(error);
   }
 });
 //MENSAJES
 router.get("/buzon", async (req, res) => {
-  //const {id_noticia} = req.params
-  //let id = {id_noticia}
+  //const {id} = req.params
+  //let user = {id}
   try {
-    let data = await pool.query("SELECT * FROM noticias WHERE id_usuario=1");
+    let data = await pool.query("SELECT * FROM noticias");
     let datamensajes = await pool.query(
       "SELECT * FROM mensajes m JOIN noticias n WHERE m.id_noticia = n.id_noticia"
     );
@@ -106,6 +119,20 @@ router.get("/vermensaje/:id_mensaje", async (req, res) => {
   }
 });
 
+router.get("/crearnoticia", async (req, res) => {
+  try {
+    let fuentes = await pool.query("SELECT * FROM fuentes");
+    let users = await pool.query(
+      "SELECT id_usuario, nombres, apellidos FROM usuarios"
+    );
+    let tag = await pool.query("SELECT * FROM etiquetas");
+
+    res.render("user/crearnoticia.hbs", { users, tag, fuentes });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get("/vernoticia/:id_noticia", async (req, res) => {
   const { id_noticia } = req.params;
   let id = { id_noticia };
@@ -119,23 +146,9 @@ router.get("/vernoticia/:id_noticia", async (req, res) => {
     );
     res.render("user/vernoticia.hbs", {
       data: data[0],
-      fuente,
+      fuente: fuente[0],
       autor: autor[0],
     });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.get("/crearnoticia", async (req, res) => {
-  try {
-    let fuentes = await pool.query("SELECT * FROM fuentes");
-    let users = await pool.query(
-      "SELECT id_usuario, nombres, apellidos FROM usuarios"
-    );
-    let tag = await pool.query("SELECT * FROM etiquetas");
-
-    res.render("user/crearnoticia.hbs", { users, tag, fuentes });
   } catch (error) {
     console.log(error);
   }
@@ -162,12 +175,12 @@ router.get("/deletenoticia/:id_noticia", async (req, res) => {
     await pool.query("DELETE FROM noticias WHERE id_noticia=?", [
       id.id_noticia,
     ]);
-    res.redirect("/user/borradores");
+    res.redirect("back");
   } catch (error) {
     console.log(error);
   }
 });
-router.get("/enviar/:id_noticia", async (req, res) => {
+router.get("/enviarnoticia/:id_noticia", async (req, res) => {
   const { id_noticia } = req.params;
   let id = { id_noticia };
   try {
@@ -417,5 +430,5 @@ router.post("/editnoticia/:id_noticia", upload, async (req, res) => {
   } catch (error) { console.log(error) }
   
 });
-
+//#endregion
 module.exports = router;

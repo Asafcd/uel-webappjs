@@ -1,0 +1,40 @@
+{{>navigation}}
+<div class="wrapper">
+    {{>sidebarAdmin}}
+
+    <div class="main_content">
+        <div class="container">
+            <div class="card bg-light">
+                <div class="card-header bg-dark text-white">
+                    <div class="container text-center"> 
+                        <h3><strong>Mensaje para noticia {{data.id_noticia}}</strong></h3>
+                        <h3> <strong>Titulo:</strong>  </h3> <h5>{{data.titulo}}</h5>
+                    </div>
+                    
+                </div>
+                
+                <div class="card-body">
+                    <div class="container">
+                        <form action="/admin/mensaje/{{data.id_noticia}}" method="POST">
+                            <div class="mb-3">
+                                <div class="mb-3">
+                                    <div class="form-group row">
+                                        <label class="form-label col-md-2" for="floatingTextarea2">Anotaciones:</label>
+                                        <textarea name="contenido" class="form-control col-md" id="floatingTextarea2"
+                                            placeholder="Razones por las cuales la noticia fue rechazada..."
+                                            rows="6"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-dark">
+                    <div class="mb-3">
+                        <input type="submit" class="btn btn-primary btn-sm text-center">Enviar
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

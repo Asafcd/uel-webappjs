@@ -1,0 +1,32 @@
+<div class="wrapper">
+  {{>sidebarAdmin}}
+  <div class="main_content">
+    <div class="container">
+      <h1>Noticias {{tag}}</h1>
+    </div>
+    <div class="container">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Autor</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each data}}
+          <tr>
+            <th scope="row">{{id_noticia}}</th>
+            <td><a href="/admin/vernoticia/{{id_noticia}}">{{titulo}}</a></td>
+            <td>{{estado}}</td>
+            <td>{{nombres}} {{apellidos}}</td>
+          </tr>
+          {{/each}}
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

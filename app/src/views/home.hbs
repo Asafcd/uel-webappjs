@@ -1,340 +1,76 @@
 {{> navigation}}
 
-
-<div class="row">
-  <div class="col-6" id="imageninicio">
-    <img id="imginiciolog" src="/img/iniciologo.png">
-  </div>
-  <div class="col-4">
-    <div id="textoinicio">
-      <h3 id="letrasinicio">UNIÓN ES LOGRO<br>PERIÓDICO DIGITAL</h3>
+<div class="wrapper">
+  <div class="main_content">
+    <div class="row">
+      <div class="col-6" id="imageninicio">
+        <img id="imginiciolog" src="/img/iniciologo.png">
+      </div>
+      <div class="col-4">
+        <div id="textoinicio">
+          <h3 id="letrasinicio">UNIÓN ES LOGRO<br>PERIÓDICO DIGITAL</h3>
+        </div>
+      </div>
+      <div class="col-1" id="inicio-logos-social">
+        <ul>
+          <li>
+            <img src="/img/wplogo.png">
+          </li>
+          <li>
+            <div id="logo-social">
+              <img src="/img/fblogo.png">
+            </div>
+          </li>
+          <li>
+            <div id="logo-social">
+              <img src="/img/iglogo.png">
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="col-1" id="inicio-logos-social">
-    <ul>
-      <li>
-        <img src="/img/wplogo.png">
-      </li>
-      <li>
-        <div id="logo-social">
-          <img src="/img/fblogo.png">
+
+    <div id="fb-root"></div>
+
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v11.0"
+      nonce="pNKTv1lK">
+      </script>
+
+    <!-- Secciones de noticias-->
+    <div class="container">
+      {{#each tag}}
+        <div class="col-12">
+          <div id="listadoseccion">
+            <div class="row" id="tit-secc-inicio">
+              <div class="col-6">
+                <h6 class="box_header page_margin_top">NOTICIAS: {{this.nombre}}</h6>
+              </div>
+              <div class="col-6" id="vermassecc">
+                <a href="/noticias/{{id}}">
+                  <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS {{this.nombre}}</h6>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </li>
-      <li>
-        <div id="logo-social">
-          <img src="/img/iglogo.png">
+        <div class="card-group">
+          {{#each mundial}}
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{titulo}}</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+          {{/each}}
         </div>
-      </li>
-    </ul>
+      {{/each}}
+    </div>
   </div>
 </div>
 
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v11.0"
-  nonce="pNKTv1lK"></script>
-<div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div id="listadoseccion">
-          <div class="row" id="tit-secc-inicio">
-            <div class="col-6">
-              <h6 class="box_header page_margin_top">NOTICIAS MUNDIALES</h6>
-            </div>
-            <div class="col-6" id="vermassecc">
-              <a href="/noticias/mundial">
-                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS MUNDIALES</h6>
-              </a>
-            </div>
-          </div>
-          <div class="row">
-            <ul class="list-inline" id="listadenotas">
-              {{#each mundial}}
-              <li class="list-inline-item" id="elementolistanotas">
-                <div class="col-12" id="noticia-enlistada">
-                  <a href="noticias/vernoticia/{{id_noticia}}" title="{{titulo}}" value="Redirect Page">
-                    <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
-                  </a>
-                  <h6 id="titulo-inicio-lista">
-                    <a href="/views/noticias/verNoticia/{{id_noticia}}">{{titulo}}</a>
-                  </h6>
-                </div>
-              </li>
-              {{/each}}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <div id="listadoseccion">
-          <div class="row" id="tit-secc-inicio">
-            <div class="col-6">
-              <h6 class="box_header page_margin_top">DEPORTES</h6>
-            </div>
-            <div class="col-6" id="vermassecc">
-              <a href="/noticias/deportes">
-                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS DEPORTES</h6>
-              </a>
-            </div>
-          </div>
-          <div class="row">
-            <ul class="list-inline" id="listadenotas">
-              {{#each deportes}}
-              <li class="list-inline-item" id="elementolistanotas">
-                <div class="col-12" id="noticia-enlistada">
-                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
-                    <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
-                  </a>
-                  <h6 id="titulo-inicio-lista">
-                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
-                  </h6>
-                </div>
-              </li>
-              {{/each}}
-
-            </ul>
-
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-    <div class="row">
-
-      <div class="col-12">
-        <div id="listadoseccion">
-          <div class="row" id="tit-secc-inicio">
-            <div class="col-6">
-              <h6 class="box_header page_margin_top">MEDIO AMBIENTE</h6>
-            </div>
-            <div class="col-6" id="vermassecc">
-              <a href="/noticias/medio ambiente">
-                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS MEDIO AMBIENTE</h6>
-              </a>
-            </div>
-          </div>
-          <div class="row">
-
-            <ul class="list-inline" id="listadenotas">
-
-              {{#each ambi}}
-              <li class="list-inline-item" id="elementolistanotas">
-                <div class="col-12" id="noticia-enlistada">
-                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
-                    <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
-                  </a>
-                  <h6 id="titulo-inicio-lista">
-                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
-                  </h6>
-                </div>
-              </li>
-              {{/each}}
-
-            </ul>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-12">
-        <div id="listadoseccion">
-          <div class="row" id="tit-secc-inicio">
-            <div class="col-6">
-              <h6 class="box_header page_margin_top">DESARROLLO TECNOLOGICO</h6>
-            </div>
-            <div class="col-6" id="vermassecc">
-              <a href="/noticias/tecnologia">
-                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS DESARROLLO TECNOLOGICO</h6>
-              </a>
-            </div>
-          </div>
-          <div class="row">
-
-            <ul class="list-inline" id="listadenotas">
-
-              {{#each tec}}
-              <li class="list-inline-item" id="elementolistanotas">
-                <div class="col-12" id="noticia-enlistada">
-                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
-                    <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
-                  </a>
-                  <h6 id="titulo-inicio-lista">
-                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
-                  </h6>
-                </div>
-              </li>
-              {{/each}}
-
-            </ul>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-12">
-        <div id="listadoseccion">
-          <div class="row" id="tit-secc-inicio">
-            <div class="col-6">
-              <h6 class="box_header page_margin_top">ARTE Y CULTURA</h6>
-            </div>
-            <div class="col-6" id="vermassecc">
-              <a href="/noticias/arte y cultura">
-                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS ARTE Y CULTURA</h6>
-              </a>
-            </div>
-          </div>
-          <div class="row">
-
-            <ul class="list-inline" id="listadenotas">
-
-              {{#each arte}}
-              <li class="list-inline-item" id="elementolistanotas">
-                <div class="col-12" id="noticia-enlistada">
-                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
-                    <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
-                  </a>
-                  <h6 id="titulo-inicio-lista">
-                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
-                  </h6>
-                </div>
-              </li>
-              {{/each}}
-
-            </ul>
-
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-
-
-
-    <div class="row">
-
-      <div class="col-12">
-        <div id="listadoseccion">
-          <div class="row" id="tit-secc-inicio">
-            <div class="col-6">
-              <h6 class="box_header page_margin_top">NOTICIAS LOCALES</h6>
-            </div>
-            <div class="col-6" id="vermassecc">
-              <a href="/noticias/local">
-                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS LOCALES</h6>
-              </a>
-            </div>
-          </div>
-          <div class="row">
-
-            <ul class="list-inline" id="listadenotas">
-
-             {{#each local}}
-              <li class="list-inline-item" id="elementolistanotas">
-                <div class="col-12" id="noticia-enlistada">
-                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
-                    <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
-                  </a>
-                  <h6 id="titulo-inicio-lista">
-                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
-                  </h6>
-                </div>
-              </li>
-              {{/each}}
-
-            </ul>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-
-    <div class="row">
-
-      <div class="col-12">
-        <div id="listadoseccion">
-          <div class="row" id="tit-secc-inicio">
-            <div class="col-6">
-              <h6 class="box_header page_margin_top">GASTRONOMIA</h6>
-            </div>
-            <div class="col-6" id="vermassecc">
-              <a href="/noticias/gastronomia">
-                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS GASTRONOMIA</h6>
-              </a>
-            </div>
-          </div>
-          <div class="row">
-
-            <ul class="list-inline" id="listadenotas">
-
-              {{#each gastro}}
-              <li class="list-inline-item" id="elementolistanotas">
-                <div class="col-12" id="noticia-enlistada">
-                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
-                    <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
-                  </a>
-                  <h6 id="titulo-inicio-lista">
-                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
-                  </h6>
-                </div>
-              </li>
-              {{/each}}
-
-            </ul>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-12">
-        <div id="listadoseccion">
-          <div class="row" id="tit-secc-inicio">
-            <div class="col-6">
-              <h6 class="box_header page_margin_top">KIDS</h6>
-            </div>
-            <div class="col-6" id="vermassecc">
-              <a href="/noticias/kids">
-                <h6 class="box_header page_margin_top" id="vermasseccion">MÁS KIDS</h6>
-              </a>
-            </div>
-          </div>
-          <div class="row">
-
-            <ul class="list-inline" id="listadenotas">
-
-              {{#each kids}}
-              <li class="list-inline-item" id="elementolistanotas">
-                <div class="col-12" id="noticia-enlistada">
-                  <a href="/noticias/vernoticia/{{id_noticia}}" title="noticia caida" value="Redirect Page">
-                    <img src="/img/noticias-imagenes/{{id_noticia}}/{{main_image}}" id="imgseccionlista">
-                  </a>
-                  <h6 id="titulo-inicio-lista">
-                    <a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a>
-                  </h6>
-                </div>
-              </li>
-              {{/each}}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
 {{> footer}}
