@@ -1,0 +1,50 @@
+<div class="container align-items-center text-center" style="width: 25rem;">
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <div class="card">
+                <div class="card-header">
+                    <div class="user-img text-center">
+                        <img src="/img/user.png" />
+                    </div>
+                    <div class="card-body">
+                        <form action="auth/signup" method="post">
+                            <div class="form-floating mb-1" id="user-group">
+                                <input type="text" class="form-control" placeholder=""
+                                    name="names" id="names" />
+                                    <label for="names">Nombres</label>
+                            </div>
+                            <div class="form-floating mb-1" id="user-group">
+                                <input type="text" class="form-control" placeholder=""
+                                    name="lasts" id="lasts" />
+                                    <label for="lasts">Apellidos</label>
+                            </div>
+                            <div class="form-floating sm mb-1" id="user-group">
+                                <input type="text" class="form-control" placeholder=""
+                                    name="username" id="username" />
+                                    <label for="usernmae">Nombre de usuario</label>
+                            </div>
+        
+                            <div class="form-floating mb-1" id="contrasena-group">
+                                <input type="password" class="form-control" placeholder="" name="password" id="password" />
+                                <label for="password">Password</label>
+                            </div>
+                            <input type="submit" name="submit" class="btn btn-primary">
+                        </form>
+                    </div>
+
+                    <form action="/signin/facebook" method="POST">
+                        <input type="hidden" name="scope" value="public_profile" />
+                        <input type="submit" value="Login using Facebook" />
+                    </form>
+                    <!--div if="param.error" class="alert alert-danger" role="alert">
+                    Invalid username and password.
+                </div>
+                <div if="param.logout" class="alert alert-success" role="alert">
+                    You have been logged out.
+                </div-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -38,37 +38,34 @@
 
     <!-- Secciones de noticias-->
     <div class="container">
-      {{#each tag}}
-        <div class="col-12">
-          <div id="listadoseccion">
-            <div class="row" id="tit-secc-inicio">
-              <div class="col-6">
-                <h6 class="box_header page_margin_top">NOTICIAS: {{this.nombre}}</h6>
-              </div>
-              <div class="col-6" id="vermassecc">
-                <a href="/noticias/{{id}}">
-                  <h6 class="box_header page_margin_top" id="vermasseccion">MÁS NOTICIAS {{this.nombre}}</h6>
-                </a>
-              </div>
+      <div class="col-12"><!--Mundiales-->
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">NOTICIAS MUNDIALES</h6>
+            </div>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/1">
+                <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
+              </a>
             </div>
           </div>
         </div>
-        <div class="card-group">
-          {{#each mundial}}
-          <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{titulo}}</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
+      </div>
+      <div class="card-group" id="listadenotas">
+        {{#each mundial}}
+        <div class="card" id="noticia-enlistada">
+          <img src="/img/noticias-imagenes/{{id_noticia}}/{{img0}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{titulo}}</h5>
+            <p class="card-text">{{contenido}}</p>
           </div>
-          {{/each}}
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
         </div>
-      {{/each}}
+        {{/each}}
+      </div>
     </div>
   </div>
 </div>
