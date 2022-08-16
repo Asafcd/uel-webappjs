@@ -10,15 +10,15 @@ router.get('/', async (req, res) => {
         let mundial = await pool.query(qry, 1)
         let local = await pool.query(qry, 2)
         let deportes = await pool.query(qry, 3)
-        let gastro = await pool.query(qry, 1)
-        let tec = await pool.query(qry, 1)
-        let kids = await pool.query(qry, 1)
-        let arte = await pool.query(qry, 1)
-        let ambi = await pool.query(qry, 1)
+        let gastro = await pool.query(qry, 4)
+        let tec = await pool.query(qry, 5)
+        let kids = await pool.query(qry, 6)
+        let arte = await pool.query(qry, 7)
+        let ambi = await pool.query(qry, 8)
         console.log(mundial)
         res.render('home.hbs', {
             mundial, 
-            local, deportes, gastro, kids, tec, arte, ambi
+            local, deportes, gastro, kids, tec, arte, ambi,
             });
         }          
     catch(err){console.log(err)}  
@@ -71,5 +71,10 @@ router.get('/login', (req, res) => {
 router.get('/signup', (req, res) => {    
     res.redirect('/auth/signup');    
 });
-
+router.get('/perfil', (req, res) => {    
+    res.redirect('/user/perfil');    
+});
+router.get('/logout', (req, res) =>{
+    res.redirect('/auth/logout')
+})
 module.exports = router;

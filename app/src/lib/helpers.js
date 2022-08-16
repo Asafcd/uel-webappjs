@@ -1,7 +1,23 @@
+const bcrypt = require('bcryptjs')
+//const timeago = require('timeago.js');
+//const timeagoInstance = timeago();
 const helpers = {}
-const path = require('path');
-const multer = require('multer')
 
+//signup
+helpers.encryptPW = async(password) => {
+    const salt = await bcrypt.genSalt(10)
+    const crpw = await bcrypt.hash(password, salt)
+    return crpw
+}
+
+//login
+helpers.matchPw = async(password, savedPassword) =>{
+    try{
+        return await bcrypt.compare(password, savedPassword)
+    }catch(e){console.log(e)}        
+};
+
+//Date Format
 helpers.dateFormat = (date) =>{
     try{
         const mes = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"]
@@ -13,5 +29,10 @@ helpers.dateFormat = (date) =>{
         return fecha
     }catch(e){console.log(e)}
 }
+
+//Time AGO
+/*helpers.timeago = (savedTimestamp) => {
+    return timeagoInstance.format(savedTimestamp);
+};*/
 
 module.exports = helpers

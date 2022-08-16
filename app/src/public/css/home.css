@@ -1,24 +1,20 @@
 .post {
-
   margin-top: 10px;
-
 }
 
 .post-content {
-
   width: 120px;
   margin-left: 10px;
   height: 500px;
 }
 
-
-
-
 header {
+  /*top:0%;*/
   background: rgba(0, 0, 0, 255);
   width: 100%;
-  position: fixed;
+  position: relative;
   z-index: 100;
+  color: #504f4f;
 }
 
 .main_content,
@@ -46,7 +42,6 @@ header {
 }
 
 #imagenNot {
-
   margin-right: 10px;
 }
 
@@ -68,7 +63,6 @@ header {
 }
 
 #noticiatexto {
-
   white-space: pre-wrap;
   overflow-wrap: break-word;
 
@@ -108,11 +102,9 @@ footer,
 
 
 #contacto {
-
   color: rgba(48, 193, 199, 255);
   font-size: 27px;
   font-family: 'Kanit', sans-serif;
-
 }
 
 #numtel,
@@ -138,8 +130,6 @@ footer,
   margin-top: 4%;
   margin-bottom: 10%;
   margin-right: 15%;
-
-
 }
 
 #footer {
@@ -147,8 +137,6 @@ footer,
   margin-left: 4%;
   margin-right: 7%;
   bottom: 0;
-
-
 }
 
 
@@ -425,7 +413,7 @@ div#textoinicio {
 }
 
 
-ul#listadenotas {
+#listadenotas {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -434,16 +422,14 @@ ul#listadenotas {
 
 }
 
-li#elementolistanotas.post {
+#elementolistanotas.post {
   float: right;
 }
 
-li#elementolistanotas.post a {
-
+#elementolistanotas.post a {
   text-align: center;
   padding: 0%;
   text-decoration: none;
-
 }
 
 
@@ -467,28 +453,19 @@ h6#vermasseccion.box_header.page_margin_top {
   text-decoration: underline;
 }
 
-
-
 div.post-content h6 a {
-
   text-align: center;
   overflow: hidden;
   white-space: nowrap;
 
   text-overflow: ellipsis;
   font-size: small;
-
-
-
 }
 
 
 div.post-content.col-8 {
   margin-left: 0%;
   text-align: center;
-
-
-
 }
 
 a.btn.btn-primary.btn-lg {
@@ -592,8 +569,6 @@ div#noticia-enlistada.col-12 {
 
 #logopais {
   width: 100%;
-
-
 }
 
 #pais {
@@ -610,11 +585,7 @@ div#noticia-enlistada.col-12 {
 
 }
 
-
-
-
-
-li#elementolistanotas.list-inline-item {
+#elementolistanotas.list-inline-item {
   width: 23%;
   height: 80%;
   margin-right: 0%;
@@ -647,11 +618,11 @@ div#logo-social {
 
 ul#listadenotas.list-inline {}
 
-div#content-seccion.container {
+div#content-seccion {
   margin-top: 0%;
 }
 
-div#bordeado.content-note-seccion {
+div#bordeado {
   margin-top: 0%;
   margin-left: 2%;
   margin-right: 2%;
@@ -719,4 +690,9 @@ ul.pagination {
   align-items: center;
   justify-content: center;
   border-style: none;
+}
+
+#nota.card-body{
+  height: 10rem;
+  overflow-y: scroll;
 }

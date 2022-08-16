@@ -1,30 +1,31 @@
+<header><h1><img src="/img/logounion.png">  |  Inicio de Sesión</h1></header>
 <div class="container align-items-center text-center" style="width: 25rem;">
     <div class="row g-3 align-items-center">
         <div class="col-auto">
             <div class="card">
                 <div class="card-header">
                     <div class="user-img text-center">
-                        <img src="/img/user.png" />
+                        <h5>Porfavor, ingresa tus datos</h5>
                     </div>
                     <div class="card-body">
-                        <form action="/login" method="post">
-                            <div class="form-group" id="user-group">
-                                <input type="text" class="form-control" placeholder="Nombre de usuario"
-                                    name="username" />
+                        <form action="/auth/login" method="post">
+                            <div class="form-floating sm mb-1" id="user-group">
+                                <input type="text" class="form-control" placeholder=""
+                                    name="username" id="username" />
+                                    <label for="usernmae">Nombre de usuario</label>
                             </div>
-                            <div class="form-group" id="contrasena-group">
-                                <input type="password" class="form-control" placeholder="Contrasena" name="password" />
+                            <div class="form-floating mb-1" id="contrasena-group">
+                                <input type="password" class="form-control" placeholder="" name="password" id="password" />
+                                <label for="password">Password</label>
                             </div>
-                            <input type="submit" name="submit" class="btn btn-primary" text="Ingresar">
+                            <br>
+                            <button type="submit" class="btn btn-primary mb-1">Ingresar </button>
                         </form>
                     </div>
-
-                    <div class="forgot">
-                        <a href="#">Recordar contrasena?</a>
-                    </div>
+                    <p>ó</p>
                     <form action="/signin/facebook" method="POST">
                         <input type="hidden" name="scope" value="public_profile" />
-                        <input type="submit" value="Login using Facebook" />
+                        <button type="submit" class="btn btn-primary" >Inicia Sesión con Facebook</button>
                     </form>
                     <!--div if="param.error" class="alert alert-danger" role="alert">
                     Invalid username and password.
@@ -32,6 +33,11 @@
                 <div if="param.logout" class="alert alert-success" role="alert">
                     You have been logged out.
                 </div-->
+                <hr>
+                <p>¿No tienes una cuenta? Ponte en contacto con el Administrador para completar tu registro :)</p>
+                <div class="forgot">
+                    <a href="#">¿Olvidaste tu constraseña?</a>
+                </div>
                 </div>
             </div>
         </div>

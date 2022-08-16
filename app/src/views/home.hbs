@@ -52,19 +52,283 @@
           </div>
         </div>
       </div>
-      <div class="card-group" id="listadenotas">
-        {{#each mundial}}
-        <div class="card" id="noticia-enlistada">
-          <img src="/img/noticias-imagenes/{{id_noticia}}/{{img0}}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{titulo}}</h5>
-            <p class="card-text">{{contenido}}</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+      <div class="row">
+          <ul class="list-inline" id="listadenotas">
+            
+              {{#each mundial}}
+              <div class="list-inline-item" id="elementolistanotas">
+                <div class="col-12" id="noticia-enlistada">
+                  <div  class="card">
+                    <div id="content-seccion">
+                      <img style="width: 100%;" id="imgseccionlista" src="/img/noticias-imagenes/{{id_noticia}}/{{img0}}" class="card-img-top" alt="...">
+                      <div id="nota" class="card-body">
+                        <h6 id="titulo-inicio-lista" class="card-title"><a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a></h6>
+                        <p class="card-text">{{contenido}}</p>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted">Publicado {{fecha}} {{hora}}</small>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              {{/each}}           
+              
+            
+          </ul>
+      </div>
+
+      <div class="col-12"><!--LOCALES-->
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">NOTICIAS LOCALES</h6>
+            </div>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/2">
+                <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
+              </a>
+            </div>
           </div>
         </div>
-        {{/each}}
+      </div>
+      <div class="row">
+          <ul class="list-inline" id="listadenotas">            
+              {{#each local}}
+              <div class="list-inline-item" id="elementolistanotas">
+                <div class="col-12" id="noticia-enlistada">
+                  <div  class="card">
+                    <div id="content-seccion">
+                      <img style="width: 100%;" id="imgseccionlista" src="/img/noticias-imagenes/{{id_noticia}}/{{img0}}" class="card-img-top" alt="...">
+                      <div id="nota" class="card-body">
+                        <h6 id="titulo-inicio-lista" class="card-title"><a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a></h6>
+                        <p class="card-text">{{contenido}}</p>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              {{/each}}                        
+          </ul>
+      </div>
+      <div class="col-12"><!--DEPORTES-->
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">NOTICIAS DEPORTES</h6>
+            </div>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/3">
+                <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <ul class="list-inline" id="listadenotas">            
+              {{#each deportes}}
+              <div class="list-inline-item" id="elementolistanotas">
+                <div class="col-12" id="noticia-enlistada">
+                  <div  class="card">
+                    <div id="content-seccion">
+                      <img style="width: 100%;" id="imgseccionlista" src="/img/noticias-imagenes/{{id_noticia}}/{{img0}}" class="card-img-top" alt="...">
+                      <div id="nota" class="card-body">
+                        <h6 id="titulo-inicio-lista" class="card-title"><a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a></h6>
+                        <p class="card-text">{{contenido}}</p>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              {{/each}}                        
+          </ul>
+      </div>
+      <div class="col-12"><!--GASTRONOMIA-->
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">NOTICIAS GASTRONOMIA</h6>
+            </div>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/4">
+                <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <ul class="list-inline" id="listadenotas">            
+              {{#each gastro}}
+              <div class="list-inline-item" id="elementolistanotas">
+                <div class="col-12" id="noticia-enlistada">
+                  <div  class="card">
+                    <div id="content-seccion">
+                      <img style="width: 100%;" id="imgseccionlista" src="/img/noticias-imagenes/{{id_noticia}}/{{img0}}" class="card-img-top" alt="...">
+                      <div id="nota" class="card-body">
+                        <h6 id="titulo-inicio-lista" class="card-title"><a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a></h6>
+                        <p class="card-text">{{contenido}}</p>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              {{/each}}                        
+          </ul>
+      </div>
+      <div class="col-12"><!--DESARROLLO TEC-->
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">NOTICIAS DESARROLLO TECNOLÓGICO</h6>
+            </div>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/5">
+                <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <ul class="list-inline" id="listadenotas">            
+              {{#each tec}}
+              <div class="list-inline-item" id="elementolistanotas">
+                <div class="col-12" id="noticia-enlistada">
+                  <div  class="card">
+                    <div id="content-seccion">
+                      <img style="width: 100%;" id="imgseccionlista" src="/img/noticias-imagenes/{{id_noticia}}/{{img0}}" class="card-img-top" alt="...">
+                      <div id="nota" class="card-body">
+                        <h6 id="titulo-inicio-lista" class="card-title"><a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a></h6>
+                        <p class="card-text">{{contenido}}</p>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              {{/each}}                        
+          </ul>
+      </div>
+      <div class="col-12"><!--KIDS-->
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">NOTICIAS KIDS</h6>
+            </div>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/6">
+                <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <ul class="list-inline" id="listadenotas">            
+              {{#each kids}}
+              <div class="list-inline-item" id="elementolistanotas">
+                <div class="col-12" id="noticia-enlistada">
+                  <div  class="card">
+                    <div id="content-seccion">
+                      <img style="width: 100%;" id="imgseccionlista" src="/img/noticias-imagenes/{{id_noticia}}/{{img0}}" class="card-img-top" alt="...">
+                      <div id="nota" class="card-body">
+                        <h6 id="titulo-inicio-lista" class="card-title"><a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a></h6>
+                        <p class="card-text">{{contenido}}</p>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              {{/each}}                        
+          </ul>
+      </div>
+      <div class="col-12"><!--ARTE Y CULTURA-->
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">NOTICIAS ARTE Y CULTURA</h6>
+            </div>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/7">
+                <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <ul class="list-inline" id="listadenotas">            
+              {{#each arte}}
+              <div class="list-inline-item" id="elementolistanotas">
+                <div class="col-12" id="noticia-enlistada">
+                  <div  class="card">
+                    <div id="content-seccion">
+                      <img style="width: 100%;" id="imgseccionlista" src="/img/noticias-imagenes/{{id_noticia}}/{{img0}}" class="card-img-top" alt="...">
+                      <div id="nota" class="card-body">
+                        <h6 id="titulo-inicio-lista" class="card-title"><a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a></h6>
+                        <p class="card-text">{{contenido}}</p>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              {{/each}}                        
+          </ul>
+      </div>
+      <div class="col-12"><!--MEDIO AMBIENTE-->
+        <div id="listadoseccion">
+          <div class="row" id="tit-secc-inicio">
+            <div class="col-6">
+              <h6 class="box_header page_margin_top">NOTICIAS MEDIO AMBIENTE</h6>
+            </div>
+            <div class="col-6" id="vermassecc">
+              <a href="/noticias/8">
+                <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <ul class="list-inline" id="listadenotas">            
+              {{#each ambi}}
+              <div class="list-inline-item" id="elementolistanotas">
+                <div class="col-12" id="noticia-enlistada">
+                  <div  class="card">
+                    <div id="content-seccion">
+                      <img style="width: 100%;" id="imgseccionlista" src="/img/noticias-imagenes/{{id_noticia}}/{{img0}}" class="card-img-top" alt="...">
+                      <div id="nota" class="card-body">
+                        <h6 id="titulo-inicio-lista" class="card-title"><a href="/noticias/vernoticia/{{id_noticia}}">{{titulo}}</a></h6>
+                        <p class="card-text">{{contenido}}</p>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+              {{/each}}                        
+          </ul>
       </div>
     </div>
   </div>

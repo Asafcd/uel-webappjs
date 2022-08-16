@@ -7,6 +7,9 @@ router.get('/:id', async (req,res)=>{
     let {id} = req.params
     let etiq = {id}
     try {
+        let tagval = await pool.query("SELECT * FROM etiquetas WHERE id=?",[etiq.id])
+        let tagname = await tagval[0].nombre.toUpperCase()
+        tagval[0].nombre = tagname
         let tag = await pool.query("SELECT * FROM etiquetas")
         let data = await pool.query(
             "SELECT n.*, u.nombres as username, u.apellidos as userlasts, f.nombre as fuente, f.link \
@@ -15,7 +18,7 @@ router.get('/:id', async (req,res)=>{
             ORDER BY n.id_noticia DESC", [etiq.id])
         //let fuentes = await poo
         //console.log(data[0])
-        res.render('noticias/templateSeccion.hbs',{data,tag})
+        res.render('noticias/templateSeccion.hbs',{data, tag, tagval:tagval[0]})
     } catch (error) { console.log(error) }
     ""
 });

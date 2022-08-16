@@ -5,6 +5,7 @@ const multer = require("multer");
 const path = require('path');
 const mime = require('mime');
 var fs = require('fs-extra');
+const aut = require('../lib/auth')
 
 //#region config metodo para subida de archivos
 var dir = path.join(__dirname, '../public/img/noticias-imagenes/')
@@ -20,7 +21,9 @@ const upload = multer({
 }).array("newsImages",4)
 //#endregion
 //#region GETS
-router.get("/borradores", async (req, res) => {
+router.get("/borradores", aut.isLoggedin, async (req, res) => {
+  //let user = req.user
+  //console.log(user)
   let tag = "Borrador"
   try {
     let data = await pool.query(
@@ -32,7 +35,7 @@ router.get("/borradores", async (req, res) => {
     console.log(error);
   }
 });
-router.get("/enviadas", async (req, res) => {
+router.get("/enviadas", aut.isLoggedin, async (req, res) => {
   let tag="Enviada"
   try {
     let data = await pool.query(
@@ -44,7 +47,7 @@ router.get("/enviadas", async (req, res) => {
     console.log(error);
   }
 });
-router.get("/aceptadas", async (req, res) => {
+router.get("/aceptadas", aut.isLoggedin, async (req, res) => {
   let tag = "Aceptadas"
   try {
     let data = await pool.query(
@@ -56,7 +59,7 @@ router.get("/aceptadas", async (req, res) => {
     console.log(error);
   }
 });
-router.get("/rechazadas", async (req, res) => {
+router.get("/rechazadas", aut.isLoggedin, async (req, res) => {
   let tag = "Rechazadas"
     try{
       let data = await pool.query("SELECT n.id_noticia, u.nombres, u.apellidos, n.titulo, n.estado, m.contenido as mensaje FROM noticias n\
@@ -67,7 +70,7 @@ router.get("/rechazadas", async (req, res) => {
   }
 });
 //MENSAJES
-router.get("/buzon", async (req, res) => {
+router.get("/buzon", aut.isLoggedin, async (req, res) => {
   //const {id} = req.params
   //let user = {id}
   try {
@@ -93,7 +96,7 @@ router.get("/buzon", async (req, res) => {
     console.log(error);
   }
 });
-router.get("/vermensaje/:id_mensaje", async (req, res) => {
+router.get("/vermensaje/:id_mensaje",aut.isLoggedin, async (req, res) => {
   const { id_mensaje } = req.params;
   let mensaje = { id_mensaje };
   try {
@@ -119,7 +122,7 @@ router.get("/vermensaje/:id_mensaje", async (req, res) => {
   }
 });
 
-router.get("/crearnoticia", async (req, res) => {
+router.get("/crearnoticia", aut.isLoggedin, async (req, res) => {
   try {
     let fuentes = await pool.query("SELECT * FROM fuentes");
     let users = await pool.query(
@@ -133,7 +136,7 @@ router.get("/crearnoticia", async (req, res) => {
   }
 });
 
-router.get("/vernoticia/:id_noticia", async (req, res) => {
+router.get("/vernoticia/:id_noticia",aut.isLoggedin, async (req, res) => {
   const { id_noticia } = req.params;
   let id = { id_noticia };
   try {
@@ -154,7 +157,7 @@ router.get("/vernoticia/:id_noticia", async (req, res) => {
   }
 });
 
-router.get("/editnoticia/:id_noticia", async (req, res) => {
+router.get("/editnoticia/:id_noticia",aut.isLoggedin, async (req, res) => {
   const { id_noticia } = req.params;
   let id = { id_noticia };
   try {
@@ -168,7 +171,7 @@ router.get("/editnoticia/:id_noticia", async (req, res) => {
     console.log(error);
   }
 });
-router.get("/deletenoticia/:id_noticia", async (req, res) => {
+router.get("/deletenoticia/:id_noticia", aut.isLoggedin, async (req, res) => {
   const { id_noticia } = req.params;
   let id = { id_noticia };
   try {
@@ -180,7 +183,7 @@ router.get("/deletenoticia/:id_noticia", async (req, res) => {
     console.log(error);
   }
 });
-router.get("/enviarnoticia/:id_noticia", async (req, res) => {
+router.get("/enviarnoticia/:id_noticia", aut.isLoggedin, async (req, res) => {
   const { id_noticia } = req.params;
   let id = { id_noticia };
   try {
@@ -189,6 +192,17 @@ router.get("/enviarnoticia/:id_noticia", async (req, res) => {
       [id.id_noticia]
     );
     res.redirect("/user/borradores");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/perfil/", aut.isLoggedin, async (req, res) => {
+  //const { id_usuario } = req.params;
+  //let user = { id_usuario };
+  try {
+    //let data = await pool.query( "SELECT * FROM usuarios WHERE id_usuario=?", [user.id_usuario]);
+    res.render("user/perfil.hbs");
   } catch (error) {
     console.log(error);
   }
@@ -309,7 +323,7 @@ router.post("/crearnoticia", upload, async (req, res) => {
       break;
   }
   //#endregion
-        
+        req.flash("success", "Noticia creada con exito")
         res.redirect('/user/borradores')
 });
 

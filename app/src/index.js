@@ -29,30 +29,31 @@ app.engine(".hbs", exhbs.engine({
 app.set("view engine", "hbs");
 
 //middlewares
-app.use(morgan('dev'))
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(express.json())
 app.use(session({
   secret: 'uelsession',
   resave:false,
     saveUninitialized:false,
     store: new MySqlStore( database )
 }))
+app.use(flash())
+app.use(morgan('dev'))
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
 
 //GLOBALS
 app.use((req,res,next)=>{
-  //app.locals.message = req.flash('message')
-  //app.locals.message = req.flash('success')
-  //app.locals.user = req.user
+  app.locals.error = req.flash('error');
+  app.locals.exito = req.flash('exito');
+  app.locals.user = req.user
   next()
 })
 
 //ROUTES
 app.use(require("./routes/index"));
-app.use('/auth', require('./routes/authentication'))
+app.use('/auth', require('./routes/auth'))
 app.use('/noticias', require('./routes/noticias'))
 app.use('/admin',require('./routes/admin'))
 app.use('/user',require('./routes/user'))
