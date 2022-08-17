@@ -22,24 +22,25 @@ const upload = multer({
 //#endregion
 //#region GETS
 router.get("/borradores", aut.isLoggedin, async (req, res) => {
-  //let user = req.user
-  //console.log(user)
-  let tag = "Borrador"
-  try {
-    let data = await pool.query(
-      "SELECT * FROM noticias WHERE estado='Borrador'"
-    );
-    //console.log(data)
-    res.render("user/noticias.hbs", { data, tag });
-  } catch (error) {
-    console.log(error);
-  }
+  let user = req.user
+  if (user.id_rol===1){res.redirect('/admin')}
+  if(user.id_rol===2){
+    let tag = "Borrador"
+    try {
+      let data = await pool.query(
+        "SELECT * FROM noticias WHERE estado='Borrador' AND id_usuario=?",[user.id_usuario]
+      );
+      //console.log(data)
+      res.render("user/noticias.hbs", { data, tag });
+    } catch (error) { console.log(error); }
+  }  
 });
 router.get("/enviadas", aut.isLoggedin, async (req, res) => {
+  let user = req.user
   let tag="Enviada"
   try {
     let data = await pool.query(
-      "SELECT * FROM noticias WHERE estado='Enviada'"
+      "SELECT * FROM noticias WHERE estado='Enviada'AND id_usuario=?",[user.id_usuario]
     );
     //console.log(data)
     res.render("user/noticias.hbs", { data, tag });
@@ -48,10 +49,11 @@ router.get("/enviadas", aut.isLoggedin, async (req, res) => {
   }
 });
 router.get("/aceptadas", aut.isLoggedin, async (req, res) => {
+  let user = req.user;
   let tag = "Aceptadas"
   try {
     let data = await pool.query(
-      "SELECT * FROM noticias WHERE estado='Aceptada'"
+      "SELECT * FROM noticias WHERE estado='Aceptada' AND id_usuario=?",[user.id_usuario]
     );
     //console.log(data)
     res.render("user/noticias.hbs", { data, tag });
@@ -60,10 +62,11 @@ router.get("/aceptadas", aut.isLoggedin, async (req, res) => {
   }
 });
 router.get("/rechazadas", aut.isLoggedin, async (req, res) => {
+  let user = req.user
   let tag = "Rechazadas"
     try{
       let data = await pool.query("SELECT n.id_noticia, u.nombres, u.apellidos, n.titulo, n.estado, m.contenido as mensaje FROM noticias n\
-        JOIN usuarios u JOIN mensajes m WHERE n.estado='Rechazada' AND n.id_usuario = u.id_usuario AND n.id_noticia = m.id_noticia")   
+        JOIN usuarios u JOIN mensajes m WHERE n.estado='Rechazada' AND n.id_usuario=? AND n.id_usuario = u.id_usuario AND n.id_noticia = m.id_noticia",[user.id_usuario])   
       res.render("user/noticiasrechazadas.hbs", { data,tag });
   } catch (error) {
     console.log(error);
@@ -71,12 +74,12 @@ router.get("/rechazadas", aut.isLoggedin, async (req, res) => {
 });
 //MENSAJES
 router.get("/buzon", aut.isLoggedin, async (req, res) => {
-  //const {id} = req.params
-  //let user = {id}
+  let user = req.user
+  
   try {
     let data = await pool.query("SELECT * FROM noticias");
     let datamensajes = await pool.query(
-      "SELECT * FROM mensajes m JOIN noticias n WHERE m.id_noticia = n.id_noticia"
+      "SELECT * FROM mensajes m JOIN noticias n WHERE n.id_usuario = ? AND m.id_noticia = n.id_noticia", [user.id_usuario]
     );
     let mensajes = [];
     data.forEach((e) => {
@@ -198,8 +201,7 @@ router.get("/enviarnoticia/:id_noticia", aut.isLoggedin, async (req, res) => {
 });
 
 router.get("/perfil/", aut.isLoggedin, async (req, res) => {
-  //const { id_usuario } = req.params;
-  //let user = { id_usuario };
+ // let user = req.user
   try {
     //let data = await pool.query( "SELECT * FROM usuarios WHERE id_usuario=?", [user.id_usuario]);
     res.render("user/perfil.hbs");

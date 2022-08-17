@@ -23,24 +23,6 @@ router.get('/logout', (req, res) =>{
     res.redirect('/login');
   });
 })
-router.get('/signup', (req, res) =>{
-    res.render('auth/signup.hbs')
-})
-
-router.post('/signup', aut.isAdmin, async (req, res) =>{
-    const {names, lasts, username, password} = req.body
-    const nwuser = { names, lasts, username, password };
-    nwuser.password = await helpers.encryptPW(password)
-    try{
-        const data = await pool.query("INSERT INTO usuarios(nombres, apellidos, enabled, username, password, id_rol) VALUES(?,?,1,?,?,2)",
-        [nwuser.names, nwuser.lasts, nwuser.username, nwuser.password])
-        nwuser.id = data.insertId
-        nwuser.id_rol = 2
-        
-        req.flash("success","Usuario creado con exito")
-        res.redirect('/login')
-    }catch(e){console.log(e)}
-})
 
 /* The IDEAL Method for sign in
 router.post('/signup', passport.authenticate('local.signup', {

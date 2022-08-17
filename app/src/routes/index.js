@@ -68,9 +68,7 @@ router.get('/admin', (req, res) => {
 router.get('/login', (req, res) => {    
     res.redirect('/auth/login');    
 });
-router.get('/signup', (req, res) => {    
-    res.redirect('/auth/signup');    
-});
+
 router.get('/perfil', (req, res) => {    
     res.redirect('/user/perfil');    
 });

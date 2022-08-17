@@ -2,7 +2,7 @@ module.exports ={
     isLoggedin(req, res, next) {
         //console.log(req.user)
         if(req.isAuthenticated()){
-            return next();
+            return req.user, next();
         }
         return res.redirect('/login');
     },

@@ -8,20 +8,21 @@
 .wrapper{
     display: flex;
     position: relative;
-    
 }
 
-.wrapper .sidebar{
-    position: fixed;
+.wrapper .sidebar, .wrapper .sidebar .container {
+    position: absolute;
+    z-index: 1;
     width: 200px;
-    height: 100%;
+    height: auto;
     background: black;
-    padding:110px 0;
+    padding:45px 0;
     
 }
 
 
-.wrapper .sidebar h2{
+.wrapper .sidebar h2,.wrapper .sidebar h5{
+    z-index: 1;
     color: #fff;
     text-transform: uppercase;
     text-align: center;
@@ -29,12 +30,14 @@
 
 }
 .wrapper .sidebar ul li{
+    z-index: 1;
     padding:15px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     border-bottom: 1px solid rgba(225, 225, 225, 0.05);
 }
 
 .wrapper .sidebar ul li a{
+    z-index: 1;
     color: whitesmoke;
     display: block;
     text-decoration: none;
@@ -54,6 +57,7 @@
 
 .wrapper .main_content{
     width: 100%;
+    /*text-align: left;*/
     margin-left: 210px;
     height: 100%;
     margin-bottom: 0%;
@@ -72,8 +76,8 @@
     margin-bottom: 0%;
     
 }
-div.sidebar{
-    margin-top: 0%;
+div.sidebar {
+    z-index: 1;
 }
 
 div.main_content{

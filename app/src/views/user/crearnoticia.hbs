@@ -1,6 +1,10 @@
-{{>navigation}}
-<div class="wrapper">
-    {{> sidebar}}
+{{> sidebar}}
+<header>
+  <div class="container-fluid">
+    <h1 id="elementos-izquierda"><img src="/img/logounion.png"> | Registro de Noticia nueva</h1>
+  </div>
+</header>
+<div class="wrapper">   
     <div class="main_content">
         <div class="container">
             <div class="card bg-light">
@@ -41,12 +45,13 @@
                             </div>
                             <div class="mb-3">
                                 <div class="form-group row">
-                                    <label class="form-label col-md-2" for="Titulo">Autor:</label>
-                                    <select class="form-control form-control-sm col-md" name="autor" id="autor">
-                                        {{#each users}}
-                                        <option value={{id_usuario}} />{{nombres}} {{apellidos}}
-                                        {{/each}}
-                                    </select>
+                                    <label class="form-label col-md-2" for="Titulo">Autor: </label>
+                                    <label class="form-label col-md-1">ID:</label>
+                                    <input type="text" class="form-constrol-sm col-md-1" name="autor" id="autor" readonly
+                                    value="{{user.id_usuario}}">
+                                    <label class="form-label col-md-1">Nombre completo:</label>
+                                    <input type="text" class="form-constrol-sm col-md-1" readonly disabled
+                                    value="{{user.nombres}} {{user.apellidos}}">
                                 </div>
                             </div>
 
