@@ -1,6 +1,4 @@
 const bcrypt = require('bcryptjs')
-//const timeago = require('timeago.js');
-//const timeagoInstance = timeago();
 const helpers = {}
 
 //signup
@@ -29,10 +27,5 @@ helpers.dateFormat = (date) =>{
         return fecha
     }catch(e){console.log(e)}
 }
-
-//Time AGO
-/*helpers.timeago = (savedTimestamp) => {
-    return timeagoInstance.format(savedTimestamp);
-};*/
 
 module.exports = helpers

@@ -14,8 +14,8 @@ router.get('/:id', async (req,res)=>{
         let data = await pool.query(
             "SELECT n.*, u.nombres as username, u.apellidos as userlasts, f.nombre as fuente, f.link \
             FROM noticias n JOIN usuarios u JOIN fuentes f \
-            WHERE n.etiqueta=? AND n.id_usuario = u.id_usuario AND n.id_fuente = f.id_fuente AND n.estado='Aceptada'  \
-            ORDER BY n.id_noticia DESC", [etiq.id])
+            WHERE n.etiqueta=? AND n.id_usuario = u.id_usuario AND n.id_fuente = f.id_fuente         \
+            ORDER BY n.id_noticia DESC", [etiq.id]) //AND n.estado='Aceptada'
         //let fuentes = await poo
         //console.log(data[0])
         res.render('noticias/templateSeccion.hbs',{data, tag, tagval:tagval[0]})

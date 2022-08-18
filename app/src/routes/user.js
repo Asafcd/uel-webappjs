@@ -5,8 +5,11 @@ const multer = require("multer");
 const path = require('path');
 const mime = require('mime');
 var fs = require('fs-extra');
-const aut = require('../lib/auth')
+const aut = require('../lib/auth');
+const { dateFormat } = require("../lib/helpers");
 
+let today = new Date(Date.now())
+let hoy = dateFormat( today)
 //#region config metodo para subida de archivos
 var dir = path.join(__dirname, '../public/img/noticias-imagenes/')
 const storage = multer.diskStorage({
@@ -213,6 +216,7 @@ router.get("/perfil/", aut.isLoggedin, async (req, res) => {
 //#region POSTS
 
 router.post("/crearnoticia", upload, async (req, res) => {
+  let user = req.user
   let idfolder=""
   let imgs = req.files
   let img0=""
@@ -220,8 +224,8 @@ router.post("/crearnoticia", upload, async (req, res) => {
   let img2=""
   let img3=""
 
-  let { titulo, contenido, estado, etiqueta, autor, fuente, link  } = req.body;        
-  let noticianew = { titulo, contenido, estado, etiqueta, autor, fuente, link };
+  let { titulo, contenido, estado, etiqueta, fuente, link, autor  } = req.body;        
+  let noticianew = { titulo, contenido, estado, etiqueta, fuente, link, autor };
   switch(imgs.length){//asignar nombres de imagenes para la bd
         case 1:
           img0 = imgs[0].filename                 
@@ -261,9 +265,9 @@ router.post("/crearnoticia", upload, async (req, res) => {
   //#endregion
   try {
     let noti = await pool.query(
-            "INSERT INTO noticias(id_usuario,id_fuente,titulo,contenido,estado,etiqueta, img0,img1,img2,img3) VALUES(?,?,?,?,?,?,?,?,?,?)",
-            [ noticianew.autor, fuenteid[0].id_fuente, noticianew.titulo, noticianew.contenido, noticianew.estado,
-              noticianew.etiqueta, img0,img1,img2,img3 ]
+            "INSERT INTO noticias(id_usuario,id_fuente,titulo,contenido,estado,etiqueta, img0,img1,img2,img3, fecha, autor) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+            [ user.id_usuario, fuenteid[0].id_fuente, noticianew.titulo, noticianew.contenido, noticianew.estado,
+              noticianew.etiqueta, img0,img1,img2,img3, hoy, autor ]
             );  
     idfolder = noti.insertId //id de la noticia recien insertada
   } catch (error) { console.log(error) }
@@ -330,6 +334,7 @@ router.post("/crearnoticia", upload, async (req, res) => {
 });
 
 router.post("/editnoticia/:id_noticia", upload, async (req, res) => {
+  let user = req.user
   const { id_noticia } = req.params;
   let id = { id_noticia };
   let idfolder = id.id_noticia
@@ -339,8 +344,8 @@ router.post("/editnoticia/:id_noticia", upload, async (req, res) => {
   let img2=""
   let img3=""
   let fuenteid=""
-  let { titulo, contenido, estado, etiqueta, autor, fuente, link  } = req.body;        
-  let noticianew = { titulo, contenido, estado, etiqueta, autor, fuente, link };
+  let { titulo, contenido, estado, etiqueta, fuente, link, autor  } = req.body;        
+  let noticianew = { titulo, contenido, estado, etiqueta, fuente, link, autor };
   switch(imgs.length){//asignar nombres de imagenes para la bd
         case 1:
           img0 = imgs[0].filename                 
@@ -438,9 +443,9 @@ router.post("/editnoticia/:id_noticia", upload, async (req, res) => {
   //#endregion
   try {
     await pool.query(
-            "UPDATE noticias SET id_usuario=?,id_fuente=?,titulo=?,contenido=?,estado=?,etiqueta=?, img0=?,img1=?,img2=?,img3=? WHERE id_noticia=?",
-            [ noticianew.autor, fuenteid, noticianew.titulo, noticianew.contenido, noticianew.estado,
-              noticianew.etiqueta, img0,img1,img2,img3, idfolder ]
+            "UPDATE noticias SET id_usuario=?,id_fuente=?,titulo=?,contenido=?,estado=?,etiqueta=?, img0=?,img1=?,img2=?,img3=?, autor=? WHERE id_noticia=?",
+            [ user.id_usuario, fuenteid, noticianew.titulo, noticianew.contenido, noticianew.estado,
+              noticianew.etiqueta, img0,img1,img2,img3, autor, idfolder ]
             );      
     res.redirect("/user/borradores")
   } catch (error) { console.log(error) }

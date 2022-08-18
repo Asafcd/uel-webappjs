@@ -1,6 +1,6 @@
 {{> navigation}}
 {{#if data}}
-<div class="container" id="noticia_content" border-width="5px">
+<div class="main_content" id="noticia_content" border-width="5px">
     <div class="container">
         <h3 id="titulonota">{{data.titulo}}</h3>
     </div>
@@ -37,20 +37,51 @@
             </button>
         </div>
     </div>
-    <div class="container mx-auto">
-    <div class="row">
-      <div class="col"></div>
-      <div class="col">
-        <p id="notacontent">{{data.contenido}}</p>
-
-        <p id="notacontent">{{data.fuente}}</p>
-        <a id="notacontent" href="http://{{data.link}}">{{data.link}}</a>
-        <h5 id="textoautor">{{data.username}} {{data.userlasts}}</h5>
-        <P id="notacontent">{{data.fecha}}</P>
-        <P id="notacontent">{{data.hora}}</P>
-      </div>
-      <div class="col"></div>
-    </div>
+    <div class="main_content" id="noticia_content">
+        <div class="row">
+        <div class="col"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">
+                            <table>
+                                <tr>
+                                    <td><p id="notacontent"><strong>Fuente: </strong> <a id="notacontent" href="http://{{data.link}}">{{data.fuente}}</a></td>
+                                </tr>
+                                <tr>
+                                    <td><p id="notacontent"><strong>Publicado:</strong> {{data.fecha}}</p></td>
+                                </tr>
+                                
+                            </table>                            
+                        </div>
+                        <div class="col"></div>
+                        <div class="col" id="autorarea">
+                            <table>                                    
+                                <tr>
+                                    <td><p id="notacontent"><strong>Autor UEL:</strong> {{data.username}} {{data.userlasts}} <img src='/img/fotoperfil.jpg' id="fotoautornota"></p></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container" >
+                        <p id="notacontent">{{data.contenido}}</p>
+                        <br>
+                        <div class="row">
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col text-end">
+                            <h5 id="textoautor">Autor Original: {{data.autor}}</h5>
+                        </div>
+                    </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <div class="col"></div>
+        </div>
   </div>
 </div>
 {{/if}}
