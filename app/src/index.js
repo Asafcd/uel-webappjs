@@ -2,7 +2,6 @@
 const express = require("express");
 const cukip = require("cookie-parser")
 const flash = require('connect-flash')
-const bodyparser = require("body-parser")
 const exhbs = require('express-handlebars')
 const path = require("path");
 const morgan = require('morgan')
@@ -37,8 +36,7 @@ app.use(session({
 }))
 app.use(flash())
 app.use(morgan('dev'))
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())

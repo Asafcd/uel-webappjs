@@ -66,3 +66,10 @@ img#ads2 {
 
   margin-right: 0%;
 }
+
+.notica-carta{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:1%;
+}

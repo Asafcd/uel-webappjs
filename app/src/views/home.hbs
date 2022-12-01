@@ -35,70 +35,67 @@
 
     <!-- Secciones de noticias-->
     <div class="container">
-      <div class="col-12"><!--Mundiales-->
+      <div class=""><!--Mundiales-->
         <div id="listadoseccion">
           <div class="row" id="tit-secc-inicio">
             <div class="col-6">
               <h6 class="box_header page_margin_top">NOTICIAS MUNDIALES</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/1">
+              <a href="/noticias/tag/1">
                 <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
               </a>
             </div>
+             <div class="noticia-carta">
+                {{#each data.mundial}}
+                {{>cartanota}}
+                {{/each}}
+              </div>
           </div>
         </div>
       </div>
-      <div class="row">
-          <ul class="list-inline" id="listadenotas">            
-            {{#each mundial}}
-            {{>cartanota}}
-            {{/each}}     
-          </ul>
-      </div>
-      <div class="col-12"><!--LOCALES-->
+
+      <div class=""><!--LOCALES-->
         <div id="listadoseccion">
           <div class="row" id="tit-secc-inicio">
             <div class="col-6">
               <h6 class="box_header page_margin_top">NOTICIAS LOCALES</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/2">
+              <a href="/noticias/tag/2">
                 <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
               </a>
             </div>
+            <div class="noticia-carta">
+                {{#each data.local}}
+                {{>cartanota}}
+                {{/each}}
+              </div>
           </div>
         </div>
       </div>
-      <div class="row">
-          <ul class="list-inline" id="listadenotas">            
-              {{#each local}}
-              {{>cartanota}}
-              {{/each}}                        
-          </ul>
-      </div>
-      <div class="col-12"><!--DEPORTES-->
+
+      <div class=""><!--DEPORTES-->
         <div id="listadoseccion">
           <div class="row" id="tit-secc-inicio">
             <div class="col-6">
               <h6 class="box_header page_margin_top">NOTICIAS DEPORTES</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/3">
+              <a href="/noticias/tag/3">
                 <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
               </a>
             </div>
+            <div class="noticia-carta">
+                {{#each data.deportes}}
+                {{>cartanota}}
+                {{/each}}
+              </div>
           </div>
         </div>
       </div>
-      <div class="row">
-          <ul class="list-inline" id="listadenotas">            
-              {{#each deportes}}
-              {{>cartanota}}
-              {{/each}}                        
-          </ul>
-      </div>
-      <div class="col-12"><!--GASTRONOMIA-->
+      
+      <div class=""><!--GASTRONOMIA-->
         <div id="listadoseccion">
           <div class="row" id="tit-secc-inicio">
             <div class="col-6">
@@ -109,100 +106,95 @@
                 <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
               </a>
             </div>
+            <div class="noticia-carta">
+                {{#each data.gastro}}
+                {{>cartanota}}
+                {{/each}}
+              </div>
           </div>
         </div>
       </div>
-      <div class="row">
-          <ul class="list-inline" id="listadenotas">            
-              {{#each gastro}}
-              {{>cartanota}}
-              {{/each}}                        
-          </ul>
-      </div>
-      <div class="col-12"><!--DESARROLLO TEC-->
+      
+      <div class=""><!--DESARROLLO TEC-->
         <div id="listadoseccion">
           <div class="row" id="tit-secc-inicio">
             <div class="col-6">
               <h6 class="box_header page_margin_top">NOTICIAS DESARROLLO TECNOLÓGICO</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/5">
+              <a href="/noticias/tag/5">
                 <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
               </a>
             </div>
+            <div class="noticia-carta">
+                {{#each data.tec}}
+                {{>cartanota}}
+                {{/each}}
+              </div>
           </div>
         </div>
       </div>
-      <div class="row">
-          <ul class="list-inline" id="listadenotas">            
-              {{#each tec}}
-              {{>cartanota}}
-              {{/each}}                        
-          </ul>
-      </div>
-      <div class="col-12"><!--KIDS-->
+      
+      <div class=""><!--KIDS-->
         <div id="listadoseccion">
           <div class="row" id="tit-secc-inicio">
             <div class="col-6">
               <h6 class="box_header page_margin_top">NOTICIAS KIDS</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/6">
+              <a href="/noticias/tag/6">
                 <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
               </a>
             </div>
+            <div class="noticia-carta">
+                {{#each data.kids}}
+                {{>cartanota}}
+                {{/each}}
+              </div>
           </div>
         </div>
       </div>
-      <div class="row">
-          <ul class="list-inline" id="listadenotas">            
-              {{#each kids}}
-              {{>cartanota}}
-              {{/each}}                        
-          </ul>
-      </div>
-      <div class="col-12"><!--ARTE Y CULTURA-->
+      
+      <div class=""><!--ARTE Y CULTURA-->
         <div id="listadoseccion">
           <div class="row" id="tit-secc-inicio">
             <div class="col-6">
               <h6 class="box_header page_margin_top">NOTICIAS ARTE Y CULTURA</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/7">
+              <a href="/noticias/tag/7">
                 <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
               </a>
             </div>
+            <div class="noticia-carta">
+                {{#each data.arte}}
+                {{>cartanota}}
+                {{/each}}
+              </div>
           </div>
         </div>
       </div>
-      <div class="row">
-          <ul class="list-inline" id="listadenotas">            
-              {{#each arte}}
-              {{>cartanota}}
-              {{/each}}                        
-          </ul>
-      </div>
-      <div class="col-12"><!--MEDIO AMBIENTE-->
+      
+      <div class=""><!--MEDIO AMBIENTE-->
         <div id="listadoseccion">
           <div class="row" id="tit-secc-inicio">
             <div class="col-6">
               <h6 class="box_header page_margin_top">NOTICIAS MEDIO AMBIENTE</h6>
             </div>
             <div class="col-6" id="vermassecc">
-              <a href="/noticias/8">
+              <a href="/noticias/tag/8">
                 <h6 class="box_header page_margin_top" id="vermasseccion">VER MÁS</h6>
               </a>
             </div>
+            <div class="noticia-carta">
+                {{#each data.ambi}}
+                {{>cartanota}}
+                {{/each}}
+              </div>
           </div>
         </div>
       </div>
-      <div class="row">
-          <ul class="list-inline" id="listadenotas">            
-              {{#each ambi}}
-              {{>cartanota}}
-              {{/each}}                        
-          </ul>
-      </div>
+      
     </div>
   </div>
 </div>
