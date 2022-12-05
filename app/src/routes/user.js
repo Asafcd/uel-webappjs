@@ -10,6 +10,7 @@ const { dateFormat } = require("../lib/helpers");
 
 let today = new Date(Date.now())
 let hoy = dateFormat( today)
+
 //#region config metodo para subida de archivos
 var dir = path.join(__dirname, '../public/img/noticias-imagenes/')
 const storage = multer.diskStorage({
@@ -24,6 +25,7 @@ const upload = multer({
 }).array("newsImages",4)
 //#endregion
 //#region GETS
+//router.get("/status")
 router.get("/borradores", aut.isLoggedin, async (req, res) => {
   let user = req.user
   if (user.id_rol===1){res.redirect('/admin')}

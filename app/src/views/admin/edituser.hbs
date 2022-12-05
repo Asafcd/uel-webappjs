@@ -1,7 +1,7 @@
 {{>sidebarAdmin}}
 <header>
   <div class="container-fluid">
-    <h1 id="elementos-izquierda"><img src="/img/logounion.png"> | Registro de usuario nuevo</h1>
+    <h1 id="elementos-izquierda"><img src="/img/logounion.png"> | {{tag}}</h1>
   </div>
 </header>
 <div class="wrapper">
@@ -9,31 +9,31 @@
         <div class="container col-md-4 text-left">
             <div class="card bg-light">
                 <div class="card-header bg-dark text-white">
-                    <p>Editando datos de {{data.username}}</p>
+                    <p>Editando datos de <strong>{{data.username}}</strong></p>
                     <p>Todos los campos son requeridos</p>
                 </div>
-                    <form id="formautor" action="/admin/edituser{{data.id_usuario}}" method="POST">
+                    <form id="formautor" action="/admin/users/{{data.id_usuario}}" method="POST">
                         <div class="card-body">
                             <div class="container mb-3">
                                 <div class="form-floating mb-1">
-                                    <input required type="text" class="form-control" id="names" name="names" placeholder="...">
-                                    <label class="form-label-sm" for="names">Nombres: {{data.nombres}}</label>
+                                    <input required type="text" class="form-control" id="names" name="names" placeholder="..." value="{{data.nombres}}">
+                                    <label class="form-label-sm" for="names">Nombres: </label>
                                 </div>
                                 <br>
                                 <div class="form-floating mb-1">
-                                    <input required type="text" class="form-control" id="lasts" name="lasts" placeholder="...">
-                                    <label class="form-label-sm" for="lasts">Apellidos: {{data.apellidos}}</label>
+                                    <input required type="text" class="form-control" id="lasts" name="lasts" placeholder="..." value="{{data.apellidos}}">
+                                    <label class="form-label-sm" for="lasts">Apellidos: </label>
                                 </div>
                                 <br>
                                 <div class="form-floating mb-1">
-                                    <input required type="text" class="form-control" placeholder="" name="username" id="username" />
-                                    <label class="form-label-sm" for="username">Username: {{data.username}}</label>
+                                    <input required type="text" class="form-control" placeholder="" name="username" id="username" value="{{data.username}}"/>
+                                    <label class="form-label-sm" for="username">Username:</label>
                                 </div>
                                 <br>
-                                <div class="form-floating mb-1">
+                                {{!-- <div class="form-floating mb-1">
                                     <input required type="password" class="form-control" id="password" name="password" placeholder="...">
-                                    <label class="form-label-sm" for="password">Password:</label>
-                                </div>
+                                    <label class="form-label-sm" for="password">Password :</label>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="card-footer text-end bg-dark">

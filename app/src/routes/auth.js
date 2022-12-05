@@ -5,7 +5,7 @@ const router = express.Router()
 const helpers = require('../lib/helpers')
 const aut = require('../lib/auth')
 
-router.get('/login', aut.isNotLoggedin, (req, res) => {    
+router.get('/', aut.isNotLoggedin, (req, res) => {    
     res.render('auth/login.hbs');    
 });
 router.post('/login', async (req,res, next)=>{

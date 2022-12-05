@@ -24,18 +24,15 @@ router.get('/nosotros', async (req, res) => {
 
 //Sistema de noticias
 router.get('/login', (req, res) => {    
-    res.redirect('/auth/login');    
-});
-router.get('/user', (req, res) => {    
-    res.redirect('/user/borradores');    
-});
-router.get('/perfil', (req, res) => {    
-    res.redirect('/user/perfil');    
-});
-router.get('/admin', (req, res) => {    
-    res.redirect('/admin/recibidas');
+    res.redirect('/auth/');    
 });
 router.get('/logout', (req, res) =>{
     res.redirect('/auth/logout')
 })
+router.get('/admin', (req, res) => {    
+    res.redirect('/admin/news/0');
+});
+router.get('/user', (req, res) => {    
+    res.redirect('/user/news/0');    
+});
 module.exports = router;

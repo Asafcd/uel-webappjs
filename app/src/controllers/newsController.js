@@ -28,6 +28,10 @@ const getNewById = async(req,res) => {
     
 }
 
+const getNewsByStatus = async(req,res) =>{
+    
+}
+
 module.exports = {
     getAllNews,
     getNewsByCategory,
