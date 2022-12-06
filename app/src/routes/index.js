@@ -30,9 +30,9 @@ router.get('/logout', (req, res) =>{
     res.redirect('/auth/logout')
 })
 router.get('/admin', (req, res) => {    
-    res.redirect('/admin/news/0');
+    res.redirect('/admin/news/status/0');
 });
 router.get('/user', (req, res) => {    
-    res.redirect('/user/news/0');    
+    res.redirect('/user/borradores');    
 });
 module.exports = router;

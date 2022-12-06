@@ -11,7 +11,7 @@ router.get('/', aut.isNotLoggedin, (req, res) => {
 router.post('/login', async (req,res, next)=>{
     try{
         passport.authenticate('local.signin', {
-        successRedirect:'/user',
+        successRedirect:'/success',
         failureRedirect: '/login', failureFlash:true,
     })(req,res, next)
     } catch(er){console.log(er)}    

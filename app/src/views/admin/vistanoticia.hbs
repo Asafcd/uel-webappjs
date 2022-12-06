@@ -11,11 +11,11 @@
 
       <p>{{data.contenido}}</p>
 
-      <h5> AUTOR: {{autor.nombres}} {{autor.apellidos}}</h5>
-       <h5>FUENTE: <a href="http://{{fuente.link}}"> {{fuente.nombre}}</a></h5>
-      <a class="btn btn-success btn-sm" href="/admin/aceptarnoticia/{{data.id_noticia}}"
+      <h5> AUTOR: {{data.username}} {{data.userlasts}}</h5>
+       <h5>FUENTE: <a href="http://{{data.link}}"> {{data.fuente}}</a></h5>
+      <a class="btn btn-success btn-sm" href="/admin/{{data.id_noticia}}/1"
         title="Aceptar noticia">Aceptar</a>
-      <a class="btn btn-danger btn-sm" href="/admin/rechazarnoticia/{{data.id_noticia}}">Rechazar</a>
+      <a class="btn btn-danger btn-sm" href="/admin/{{data.id_noticia}}/0">Rechazar</a>
     </div>
     <hr>
   </div>
