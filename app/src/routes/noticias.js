@@ -5,6 +5,6 @@ const newsController = require('../controllers/newsController')
 newsRouter
 .get('/', newsController.getAllNews )
 .get('/tag/:id', newsController.getNewsByCategory )
-.get('/:id', newsController.getNewById )
+.get('/:id_noticia', newsController.getNewById )
 
 module.exports = newsRouter;

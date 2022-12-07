@@ -34,7 +34,7 @@ const getNewsByStatus = async (status) => {
     try {       
         let data = await pool.query("SELECT n.id_noticia, u.nombres, u.apellidos, n.titulo, n.estado FROM noticias n\
         JOIN usuarios u WHERE estado=? AND n.id_usuario = u.id_usuario", [status])
-        return {data}
+        return data
     } catch (error) { throw { status: 500, error: error } }
 }
 
@@ -46,9 +46,32 @@ const getNewById = async (id) => {
     }catch(err) {throw { status: 500, error: err }}
 }
 
-const updateNewStatusById = async(id, status) =>{
+const updateNewStatusById = async(id_noticia, status) =>{
     try{
-        await pool.query("UPDATE noticias SET estado =? WHERE id_noticia =?",[status,id])
+        await pool.query("UPDATE noticias SET estado =? WHERE id_noticia =?",[status,id_noticia])
+    }catch(err) {throw { status: 500, error: err }}
+}
+
+const getNewsByUserId = async(id_usuario, status) =>{
+    try{
+        const data = await pool.query("SELECT * FROM noticias WHERE id_usuario=? AND estado=?",[id_usuario, status])
+        return data
+    }catch(err) {throw { status: 500, error: err }}
+}
+
+const getDeclinedNewsByUserId = async(id_usuario) =>{
+    try{
+        const data = await pool.query("SELECT n.id_noticia, u.nombres, u.apellidos, n.titulo, n.estado, m.contenido as mensaje FROM noticias n\
+        JOIN usuarios u JOIN mensajes m\
+        WHERE n.estado='Rechazada' AND n.id_usuario=? AND n.id_usuario = u.id_usuario AND n.id_noticia = m.id_noticia",
+        [id_usuario])     
+        return data
+    }catch(err) {throw { status: 500, error: err }}
+}
+
+const deleteNewById = async(id_noticia)=>{
+    try{
+        await pool.query("DELETE FROM noticias WHERE id_noticia =?", id_noticia);
     }catch(err) {throw { status: 500, error: err }}
 }
 
@@ -57,5 +80,8 @@ module.exports = {
     getNewsByCategory,
     getNewById,
     getNewsByStatus,
-    updateNewStatusById
+    updateNewStatusById,
+    getNewsByUserId,
+    getDeclinedNewsByUserId,
+    deleteNewById
 }

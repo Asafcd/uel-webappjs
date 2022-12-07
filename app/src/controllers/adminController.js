@@ -1,6 +1,4 @@
-const userService = require("../services/userService")
 const newsService = require("../services/newsService")
-const fuentesService = require("../services/fuenteService")
 const msgService = require('../services/mensajeService')
 
 const getNewById = async(req,res) =>{
