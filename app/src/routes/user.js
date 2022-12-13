@@ -46,126 +46,91 @@ router
 
 
 
-router.post("/crearnoticia", upload, async (req, res) => {
-  let user = req.user
-  let idfolder=""
-  let imgs = req.files
-  let img0=""
-  let img1=""
-  let img2=""
-  let img3=""
+router.post("/crearnoticia", upload, userController.creatNoticia)
 
-  let { titulo, contenido, estado, etiqueta, fuente, link, autor  } = req.body;        
-  let noticianew = { titulo, contenido, estado, etiqueta, fuente, link, autor };
- //#region asignar nombres de imagenes para la bd
-  switch(imgs.length){
-
-        case 1:
-          img0 = imgs[0].filename                 
-          break;
-        case 2:
-          img0 = imgs[0].filename       
-          img1 = imgs[1].filename       
-          break;
-        case 3:
-          img0 = imgs[0].filename       
-          img1 = imgs[1].filename 
-          img2 = imgs[2].filename
-          break;
-        case 4:
-          img0 = imgs[0].filename       
-          img1 = imgs[1].filename 
-          img2 = imgs[2].filename
-          img3 = imgs[3].filename
-          break;
-      }
-//#endregion
 //#region Crear entidades desde el add form, solo si no existen y no son strings vacios
-      let aa = noticianew.fuente.toLowerCase()
-      let aabool = false;
-      let fuentes = await pool.query("SELECT * FROM fuentes");
+      // let aa = noticianew.fuente.toLowerCase()
+      // let aabool = false;
+      // let fuentes = await pool.query("SELECT * FROM fuentes");
 
-      fuentes.forEach((a) => {
-          if (aa.indexOf(a.nombre.toLowerCase()) !== -1 || aa==="") {
-          aabool = true;
-          }    
-      });
-      if (!aabool) {
-          try {
-          await pool.query( "INSERT INTO fuentes(nombre, link) VALUES(?,?)", [noticianew.fuente, noticianew.link] );
-          } catch (err) { console.log(err); }
-      }  
-      let fuenteid = await pool.query("SELECT id_fuente FROM fuentes WHERE nombre = ?",[noticianew.fuente])
+      // fuentes.forEach((a) => {
+      //     if (aa.indexOf(a.nombre.toLowerCase()) !== -1 || aa==="") {
+      //     aabool = true;
+      //     }    
+      // });
+      // if (!aabool) {
+      //     try {
+      //     await pool.query( "INSERT INTO fuentes(nombre, link) VALUES(?,?)", [noticianew.fuente, noticianew.link] );
+      //     } catch (err) { console.log(err); }
+      // }  
+      // let fuenteid = await pool.query("SELECT id_fuente FROM fuentes WHERE nombre = ?",[noticianew.fuente])
   //#endregion
-  try {
-    let noti = await pool.query(
-            "INSERT INTO noticias(id_usuario,id_fuente,titulo,contenido,estado,etiqueta, img0,img1,img2,img3, fecha, autor) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
-            [ user.id_usuario, fuenteid[0].id_fuente, noticianew.titulo, noticianew.contenido, noticianew.estado,
-              noticianew.etiqueta, img0,img1,img2,img3, hoy, autor ]
-            );  
-    idfolder = noti.insertId //id de la noticia recien insertada
-  } catch (error) { console.log(error) }
+  // try {
+  //   let noti = await pool.query(
+  //           "INSERT INTO noticias(id_usuario,id_fuente,titulo,contenido,estado,etiqueta, img0,img1,img2,img3, fecha, autor) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+  //           [ user.id_usuario, fuenteid[0].id_fuente, noticianew.titulo, noticianew.contenido, noticianew.estado,
+  //             noticianew.etiqueta, img0,img1,img2,img3, hoy, autor ]
+  //           );  
+  //   idfolder = noti.insertId //id de la noticia recien insertada
+  // } catch (error) { console.log(error) }
 
 //#region mover imagenes a carpeta con id_noticia
-  var newpath = dir+idfolder+"/"
-  if (!fs.existsSync(newpath)){
-          fs.mkdirSync(newpath);
-      }
+  // var newpath = dir+idfolder+"/"
+  // if (!fs.existsSync(newpath)){
+  //         fs.mkdirSync(newpath);
+  //     }
 
-  switch(imgs.length){
-    case 1:
-      fs.move( dir+img0, newpath+img0, function (err) {
-        if (err) return console.error(err)
-        console.log("success1")
-      })
-      break;
-    case 2:
-      fs.move( dir+img0, newpath+img0, function (err) {
-        if (err) return console.error(err)
-        console.log("success!0")
-      })
-      fs.move( dir+img1, newpath+img1, function (err) {
-        if (err) return console.error(err)
-        console.log("success!1")
-      })
-      break;
-    case 3:
-      fs.move( dir+img0, newpath+img0, function (err) {
-        if (err) return console.error(err)
-        console.log("success!0")
-      })
-      fs.move( dir+img1, newpath+img1, function (err) {
-        if (err) return console.error(err)
-        console.log("success!1")
-      })
-      fs.move( dir+img2, newpath+img2, function (err) {
-        if (err) return console.error(err)
-        console.log("success!2")
-      })
-      break;
-    case 4:
-      fs.move( dir+img0, newpath+img0, function (err) {
-        if (err) return console.error(err)
-        console.log("success0")
-      })
-      fs.move( dir+img1, newpath+img1, function (err) {
-        if (err) return console.error(err)
-        console.log("success1")
-      })
-      fs.move( dir+img2, newpath+img2, function (err) {
-        if (err) return console.error(err)
-        console.log("success2")      
-      })
-      fs.move( dir+img3, newpath+img3, function (err) {
-        if (err) return console.error(err)
-        console.log("success3")
-      })
-      break;
-  }
-  //#endregion
-        req.flash("success", "Noticia creada con exito")
-        res.redirect('/user/borradores')
-});
+  // switch(imgs.length){
+  //   case 1:
+  //     fs.move( dir+img0, newpath+img0, function (err) {
+  //       if (err) return console.error(err)
+  //       console.log("success1")
+  //     })
+  //     break;
+  //   case 2:
+  //     fs.move( dir+img0, newpath+img0, function (err) {
+  //       if (err) return console.error(err)
+  //       console.log("success!0")
+  //     })
+  //     fs.move( dir+img1, newpath+img1, function (err) {
+  //       if (err) return console.error(err)
+  //       console.log("success!1")
+  //     })
+  //     break;
+  //   case 3:
+  //     fs.move( dir+img0, newpath+img0, function (err) {
+  //       if (err) return console.error(err)
+  //       console.log("success!0")
+  //     })
+  //     fs.move( dir+img1, newpath+img1, function (err) {
+  //       if (err) return console.error(err)
+  //       console.log("success!1")
+  //     })
+  //     fs.move( dir+img2, newpath+img2, function (err) {
+  //       if (err) return console.error(err)
+  //       console.log("success!2")
+  //     })
+  //     break;
+  //   case 4:
+  //     fs.move( dir+img0, newpath+img0, function (err) {
+  //       if (err) return console.error(err)
+  //       console.log("success0")
+  //     })
+  //     fs.move( dir+img1, newpath+img1, function (err) {
+  //       if (err) return console.error(err)
+  //       console.log("success1")
+  //     })
+  //     fs.move( dir+img2, newpath+img2, function (err) {
+  //       if (err) return console.error(err)
+  //       console.log("success2")      
+  //     })
+  //     fs.move( dir+img3, newpath+img3, function (err) {
+  //       if (err) return console.error(err)
+  //       console.log("success3")
+  //     })
+  //     break;
+  // }
+  // //#endregion
 
 router.post("/editnoticia/:id_noticia", upload, async (req, res) => {
   let user = req.user

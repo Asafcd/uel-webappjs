@@ -1,17 +1,16 @@
 // CONST
 const express = require("express");
-const cukip = require("cookie-parser")
 const flash = require('connect-flash')
 const exhbs = require('express-handlebars')
 const path = require("path");
 const morgan = require('morgan')
 const favicon = require('serve-favicon');
-const multer = require("multer");
 const session = require('express-session')
 const MySqlStore = require('express-mysql-session')
 const passport = require('passport')
-
 const {database}  = require('./keys')
+
+
 //Initialization
 const app = express();
 require('./lib/passport');
