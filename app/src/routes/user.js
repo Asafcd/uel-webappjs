@@ -57,7 +57,9 @@ router.post("/crearnoticia", upload, async (req, res) => {
 
   let { titulo, contenido, estado, etiqueta, fuente, link, autor  } = req.body;        
   let noticianew = { titulo, contenido, estado, etiqueta, fuente, link, autor };
-  switch(imgs.length){//asignar nombres de imagenes para la bd
+ //#region asignar nombres de imagenes para la bd
+  switch(imgs.length){
+
         case 1:
           img0 = imgs[0].filename                 
           break;
@@ -77,6 +79,7 @@ router.post("/crearnoticia", upload, async (req, res) => {
           img3 = imgs[3].filename
           break;
       }
+//#endregion
 //#region Crear entidades desde el add form, solo si no existen y no son strings vacios
       let aa = noticianew.fuente.toLowerCase()
       let aabool = false;
